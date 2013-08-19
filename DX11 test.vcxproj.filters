@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{e9aa5a6c-a46c-4597-9882-bd00a0b5e816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{31bbfadc-ed44-479c-a493-1762f6b9f0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty">
+      <UniqueIdentifier>{aa668f33-f00c-49cd-8d84-d5d2bee0e872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\TinyXML">
+      <UniqueIdentifier>{ac3e6d50-6805-4923-94aa-63d07ad5c9d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\FastDelegate">
+      <UniqueIdentifier>{17b9cbfb-f319-4ec3-8073-2e88b99f7e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\LEAP">
+      <UniqueIdentifier>{2da89980-e61c-41a3-bd32-dcc38f76d4a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics3D">
+      <UniqueIdentifier>{9804e6cb-c611-44bd-aff2-422fbb8a4653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actors">
+      <UniqueIdentifier>{240fee99-7ef7-447f-84a8-d09d57187bdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{fc2153e2-4ed7-4f06-848b-24f36860ebea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3dApp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="d3dStd.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dxerr.h">
+      <Filter>Source Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="TestApp1.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdParty\TinyXML\tinystr.h">
+      <Filter>Source Files\3rdParty\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdParty\TinyXML\tinyxml.h">
+      <Filter>Source Files\3rdParty\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdParty\FastDelegate\FastDelegate.h">
+      <Filter>Source Files\3rdParty\FastDelegate</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdParty\FastDelegate\FastDelegateBind.h">
+      <Filter>Source Files\3rdParty\FastDelegate</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DRenderer.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneNode.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRenderComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxRenderComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraNode.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationAnimatorComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereRenderComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffers.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="d3dApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dxerr.cpp">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="TestApp1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MathHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdParty\TinyXML\tinystr.cpp">
+      <Filter>Source Files\3rdParty\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdParty\TinyXML\tinyxml.cpp">
+      <Filter>Source Files\3rdParty\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdParty\TinyXML\tinyxmlerror.cpp">
+      <Filter>Source Files\3rdParty\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdParty\TinyXML\tinyxmlparser.cpp">
+      <Filter>Source Files\3rdParty\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdParty\FastDelegate\Demo.cpp">
+      <Filter>Source Files\3rdParty\FastDelegate</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DRenderer.cpp">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxRenderComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="RotationAnimationComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="color.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="color_PS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="color_VS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
