@@ -179,6 +179,9 @@
     <ClCompile Include="RotationAnimationComponent.cpp">
       <Filter>Source Files\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="SphereRenderComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="color.fx">

@@ -1,0 +1,60 @@
+﻿Build started 8/21/2013 2:02:58 AM.
+     1>Project "L:\Users\Leif Erkenbrach\Desktop\DX11\DX11 test.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /errorReport:prompt 3rdParty\FastDelegate\Demo.cpp 3rdParty\TinyXML\tinystr.cpp 3rdParty\TinyXML\tinyxml.cpp 3rdParty\TinyXML\tinyxmlerror.cpp 3rdParty\TinyXML\tinyxmlparser.cpp Actor.cpp BoxRenderComponent.cpp d3dApp.cpp D3DRenderer.cpp dxerr.cpp GameTimer.cpp Geometry.cpp MathHelper.cpp RotationAnimationComponent.cpp Scene.cpp SceneNode.cpp String.cpp TestApp1.cpp TransformComponent.cpp
+         Demo.cpp
+         tinystr.cpp
+         tinyxml.cpp
+         tinyxmlerror.cpp
+         tinyxmlparser.cpp
+         Actor.cpp
+         BoxRenderComponent.cpp
+     1>BoxRenderComponent.cpp(22): warning C4267: '=' : conversion from 'size_t' to 'UINT', possible loss of data
+     1>BoxRenderComponent.cpp(35): warning C4267: '=' : conversion from 'size_t' to 'UINT', possible loss of data
+         d3dApp.cpp
+     1>d3dApp.cpp(70): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         D3DRenderer.cpp
+         dxerr.cpp
+         GameTimer.cpp
+         Geometry.cpp
+     1>Geometry.cpp(341): warning C4267: 'initializing' : conversion from 'size_t' to 'UINT', possible loss of data
+         MathHelper.cpp
+         RotationAnimationComponent.cpp
+         Scene.cpp
+         SceneNode.cpp
+         String.cpp
+     1>String.cpp(241): warning C4996: 'wcsncpy': This function or variable may be unsafe. Consider using wcsncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\wchar.h(1056) : see declaration of 'wcsncpy'
+     1>String.cpp(291): warning C4996: 'wcsncpy': This function or variable may be unsafe. Consider using wcsncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\wchar.h(1056) : see declaration of 'wcsncpy'
+     1>String.cpp(439): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned long', possible loss of data
+         TestApp1.cpp
+         TransformComponent.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Release\DX11 test.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Release\DX11 test.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Release\DX11 test.lib" /MACHINE:X64 /PROFILE x64\Release\Demo.obj
+         x64\Release\tinystr.obj
+         x64\Release\tinyxml.obj
+         x64\Release\tinyxmlerror.obj
+         x64\Release\tinyxmlparser.obj
+         x64\Release\Actor.obj
+         x64\Release\BoxRenderComponent.obj
+         x64\Release\d3dApp.obj
+         x64\Release\D3DRenderer.obj
+         x64\Release\dxerr.obj
+         x64\Release\GameTimer.obj
+         x64\Release\Geometry.obj
+         x64\Release\MathHelper.obj
+         x64\Release\RotationAnimationComponent.obj
+         x64\Release\Scene.obj
+         x64\Release\SceneNode.obj
+         x64\Release\String.obj
+         x64\Release\TestApp1.obj
+         x64\Release\TransformComponent.obj
+         Generating code
+         Finished generating code
+         DX11 test.vcxproj -> L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Release\DX11 test.exe
+     1>Done Building Project "L:\Users\Leif Erkenbrach\Desktop\DX11\DX11 test.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:15.38
