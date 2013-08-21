@@ -7,13 +7,15 @@
 
 const char* SphereRenderComponent::gName = "SphereRender";
 
-SphereRenderComponent::SphereRenderComponent(ActorPtr pOwner, ID3D11VertexShader* pVertShader, ID3D11PixelShader* pPixelShader, float radius = 1.0f, int sliceCount = 10, int stackCount = 10)
+SphereRenderComponent::SphereRenderComponent(ActorPtr pOwner, ID3D11VertexShader* pVertShader, ID3D11PixelShader* pPixelShader, float radius, int sliceCount, int stackCount)
 	:ActorComponent(pOwner),
 	mpVertexShader(pVertShader),
 	mpPixelShader(pPixelShader)
 {
 	Mesh sphereMesh;
 	GeometryGenerator::CreateSphere(radius, sliceCount, stackCount, sphereMesh);
+
+	mIndexCount = sphereMesh.Indices.size();
 
 	D3DRenderer* renderer = Scene::getScene()->getRenderer();
 
@@ -84,5 +86,5 @@ void SphereRenderComponent::VRender()
 	context->VSSetConstantBuffers(0, 1, &mTransformBuffer);
 	context->PSSetShader(mpPixelShader, NULL, 0);
 	context->PSSetConstantBuffers(0, 1, &mTransformBuffer); //was CSSetConstantBuffers would probably have errored on use
-	context->DrawIndexed(36, 0, 0);
+	context->DrawIndexed(mIndexCount, 0, 0);
 }

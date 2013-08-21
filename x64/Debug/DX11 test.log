@@ -1,0 +1,33 @@
+﻿Build started 8/21/2013 2:45:46 AM.
+     1>Project "L:\Users\Leif Erkenbrach\Desktop\DX11\DX11 test.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt TestApp1.cpp
+         TestApp1.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Debug\DX11 test.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Debug\DX11 test.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Debug\DX11 test.lib" /MACHINE:X64 /PROFILE x64\Debug\Demo.obj
+         x64\Debug\tinystr.obj
+         x64\Debug\tinyxml.obj
+         x64\Debug\tinyxmlerror.obj
+         x64\Debug\tinyxmlparser.obj
+         x64\Debug\Actor.obj
+         x64\Debug\BoxRenderComponent.obj
+         x64\Debug\d3dApp.obj
+         x64\Debug\D3DRenderer.obj
+         x64\Debug\dxerr.obj
+         x64\Debug\GameTimer.obj
+         x64\Debug\Geometry.obj
+         x64\Debug\MathHelper.obj
+         x64\Debug\RotationAnimationComponent.obj
+         x64\Debug\Scene.obj
+         x64\Debug\SceneNode.obj
+         x64\Debug\SphereRenderComponent.obj
+         x64\Debug\String.obj
+         x64\Debug\TestApp1.obj
+         x64\Debug\TransformComponent.obj
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
+         DX11 test.vcxproj -> L:\Users\Leif Erkenbrach\Desktop\DX11\x64\Debug\DX11 test.exe
+     1>Done Building Project "L:\Users\Leif Erkenbrach\Desktop\DX11\DX11 test.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.85

@@ -5,6 +5,7 @@
 
 class SphereRenderComponent : public ActorComponent
 {
+public:
 	SphereRenderComponent(ActorPtr pOwner, ID3D11VertexShader* pVertShader, ID3D11PixelShader* pPixelShader, float radius = 1.0f, int sliceCount = 10, int stackCount = 10);
 	virtual ~SphereRenderComponent();
 
@@ -22,4 +23,6 @@ private:
 
 	ID3D11VertexShader* mpVertexShader;
 	ID3D11PixelShader* mpPixelShader;
+
+	unsigned mIndexCount;
 };

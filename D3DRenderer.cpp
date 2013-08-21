@@ -210,8 +210,8 @@ bool D3DRenderer::initialize()
 	D3D11_RASTERIZER_DESC rasterDesc;
 	ZeroMemory(&rasterDesc, sizeof(D3D11_RASTERIZER_DESC));
 
-	rasterDesc.FillMode = D3D11_FILL_SOLID;
-	rasterDesc.CullMode = D3D11_CULL_BACK;
+	rasterDesc.FillMode = D3D11_FILL_WIREFRAME;
+	rasterDesc.CullMode = D3D11_CULL_NONE;
 
 	ID3D11RasterizerState* rasterState;
 

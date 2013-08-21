@@ -9,6 +9,7 @@
 #include "TransformComponent.h"
 #include "BoxRenderComponent.h"
 #include "RotationAnimatorComponent.h"
+#include "SphereRenderComponent.h"
 
 #include <DirectXMath.h>
 
@@ -142,20 +143,20 @@ void TestApp1::buildGeometryBuffers()
 
 				for (int i = 0; i < 5; i++)
 				{
-					ActorPtr childBox = ActorPtr(new Actor(id++));
+					ActorPtr childSphere = ActorPtr(new Actor(id++));
 
-					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(childBox, mpVertexShader, mpPixelShader);
-					TransformComponent* childTransform = new TransformComponent(childBox, &(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(2.0f, 0.0f, 0.0f)));
-					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(childBox, XMFLOAT3(0.0f, 1.0f, 0.0f));
+					SphereRenderComponent* SphereRenderer2 = new SphereRenderComponent(childSphere, mpVertexShader, mpPixelShader, 0.5f, 15, 15);
+					TransformComponent* childTransform = new TransformComponent(childSphere, &(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(2.0f, 0.0f, 0.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(childSphere, XMFLOAT3(0.0f, 1.0f, 0.0f));
 			
 
-					childBox->addComponent(ActorComponentPtr(boxRenderer2));
-					childBox->addComponent(ActorComponentPtr(childTransform));
-					childBox->addComponent(ActorComponentPtr(rotator));
+					childSphere->addComponent(ActorComponentPtr(SphereRenderer2));
+					childSphere->addComponent(ActorComponentPtr(childTransform));
+					childSphere->addComponent(ActorComponentPtr(rotator));
 
-					lastChild->addChild(childBox);
+					lastChild->addChild(childSphere);
 
-					lastChild = childBox;
+					lastChild = childSphere;
 				}
 
 				lastChild = newBox;
