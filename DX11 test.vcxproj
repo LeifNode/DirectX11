@@ -71,6 +71,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <SourcePath>L:\Users\Leif Erkenbrach\Desktop\DX11\src</SourcePath>
+    <IncludePath>L:\Users\Leif Erkenbrach\Desktop\DX11\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -147,28 +149,29 @@
     <ClInclude Include="3rdParty\FastDelegate\FastDelegateBind.h" />
     <ClInclude Include="3rdParty\TinyXML\tinystr.h" />
     <ClInclude Include="3rdParty\TinyXML\tinyxml.h" />
-    <ClInclude Include="Actor.h" />
-    <ClInclude Include="ActorComponent.h" />
-    <ClInclude Include="BaseRenderComponent.h" />
-    <ClInclude Include="BoxRenderComponent.h" />
-    <ClInclude Include="CameraNode.h" />
-    <ClInclude Include="ConstantBuffers.h" />
-    <ClInclude Include="d3dApp.h" />
-    <ClInclude Include="D3DRenderer.h" />
-    <ClInclude Include="d3dStd.h" />
-    <ClInclude Include="dxerr.h" />
-    <ClInclude Include="GameTimer.h" />
-    <ClInclude Include="Geometry.h" />
-    <ClInclude Include="Interfaces.h" />
-    <ClInclude Include="Lights.h" />
-    <ClInclude Include="MathHelper.h" />
-    <ClInclude Include="RotationAnimatorComponent.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneNode.h" />
-    <ClInclude Include="SphereRenderComponent.h" />
-    <ClInclude Include="String.h" />
-    <ClInclude Include="TestApp1.h" />
-    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="src\Actor.h" />
+    <ClInclude Include="src\ActorComponent.h" />
+    <ClInclude Include="src\BaseRenderComponent.h" />
+    <ClInclude Include="src\BoxRenderComponent.h" />
+    <ClInclude Include="src\CameraNode.h" />
+    <ClInclude Include="src\ConstantBuffers.h" />
+    <ClInclude Include="src\d3dApp.h" />
+    <ClInclude Include="src\D3DRenderer.h" />
+    <ClInclude Include="src\d3dStd.h" />
+    <ClInclude Include="src\dxerr.h" />
+    <ClInclude Include="src\GameTimer.h" />
+    <ClInclude Include="src\Geometry.h" />
+    <ClInclude Include="src\Interfaces.h" />
+    <ClInclude Include="src\Lights.h" />
+    <ClInclude Include="src\MathHelper.h" />
+    <ClInclude Include="src\MeshRenderComponent.h" />
+    <ClInclude Include="src\RotationAnimatorComponent.h" />
+    <ClInclude Include="src\Scene.h" />
+    <ClInclude Include="src\SceneNode.h" />
+    <ClInclude Include="src\SphereRenderComponent.h" />
+    <ClInclude Include="src\String.h" />
+    <ClInclude Include="src\TestApp1.h" />
+    <ClInclude Include="src\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\FastDelegate\Demo.cpp" />
@@ -176,21 +179,21 @@
     <ClCompile Include="3rdParty\TinyXML\tinyxml.cpp" />
     <ClCompile Include="3rdParty\TinyXML\tinyxmlerror.cpp" />
     <ClCompile Include="3rdParty\TinyXML\tinyxmlparser.cpp" />
-    <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="BoxRenderComponent.cpp" />
-    <ClCompile Include="d3dApp.cpp" />
-    <ClCompile Include="D3DRenderer.cpp" />
-    <ClCompile Include="dxerr.cpp" />
-    <ClCompile Include="GameTimer.cpp" />
-    <ClCompile Include="Geometry.cpp" />
-    <ClCompile Include="MathHelper.cpp" />
-    <ClCompile Include="RotationAnimationComponent.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneNode.cpp" />
-    <ClCompile Include="SphereRenderComponent.cpp" />
-    <ClCompile Include="String.cpp" />
-    <ClCompile Include="TestApp1.cpp" />
-    <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="src\Actor.cpp" />
+    <ClCompile Include="src\BoxRenderComponent.cpp" />
+    <ClCompile Include="src\d3dApp.cpp" />
+    <ClCompile Include="src\D3DRenderer.cpp" />
+    <ClCompile Include="src\dxerr.cpp" />
+    <ClCompile Include="src\GameTimer.cpp" />
+    <ClCompile Include="src\Geometry.cpp" />
+    <ClCompile Include="src\MathHelper.cpp" />
+    <ClCompile Include="src\RotationAnimatorComponent.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\SceneNode.cpp" />
+    <ClCompile Include="src\SphereRenderComponent.cpp" />
+    <ClCompile Include="src\String.cpp" />
+    <ClCompile Include="src\TestApp1.cpp" />
+    <ClCompile Include="src\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="color.fx">

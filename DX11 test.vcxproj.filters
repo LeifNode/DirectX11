@@ -42,27 +42,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="d3dApp.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTimer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="d3dStd.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dxerr.h">
-      <Filter>Source Files\external</Filter>
-    </ClInclude>
-    <ClInclude Include="TestApp1.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MathHelper.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="3rdParty\TinyXML\tinystr.h">
       <Filter>Source Files\3rdParty\TinyXML</Filter>
     </ClInclude>
@@ -75,68 +54,77 @@
     <ClInclude Include="3rdParty\FastDelegate\FastDelegateBind.h">
       <Filter>Source Files\3rdParty\FastDelegate</Filter>
     </ClInclude>
-    <ClInclude Include="D3DRenderer.h">
-      <Filter>Source Files\Graphics3D</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneNode.h">
-      <Filter>Source Files\Graphics3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry.h">
-      <Filter>Source Files\Graphics3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
+    <ClInclude Include="src\RotationAnimatorComponent.h">
       <Filter>Source Files\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Source Files\Graphics3D</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorComponent.h">
+    <ClInclude Include="src\SphereRenderComponent.h">
       <Filter>Source Files\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="String.h">
+    <ClInclude Include="src\TransformComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Actor.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActorComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BaseRenderComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoxRenderComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Geometry.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lights.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneNode.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CameraNode.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConstantBuffers.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\D3DRenderer.h">
+      <Filter>Source Files\Graphics3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\String.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="BaseRenderComponent.h">
+    <ClInclude Include="src\d3dApp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3dStd.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameTimer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Interfaces.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MathHelper.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TestApp1.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dxerr.h">
+      <Filter>Source Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeshRenderComponent.h">
       <Filter>Source Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformComponent.h">
-      <Filter>Source Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxRenderComponent.h">
-      <Filter>Source Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraNode.h">
-      <Filter>Source Files\Graphics3D</Filter>
-    </ClInclude>
-    <ClInclude Include="RotationAnimatorComponent.h">
-      <Filter>Source Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="SphereRenderComponent.h">
-      <Filter>Source Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstantBuffers.h">
-      <Filter>Source Files\Graphics3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Lights.h">
-      <Filter>Source Files\Graphics3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="d3dApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dxerr.cpp">
-      <Filter>Source Files\external</Filter>
-    </ClCompile>
-    <ClCompile Include="TestApp1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MathHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="3rdParty\TinyXML\tinystr.cpp">
       <Filter>Source Files\3rdParty\TinyXML</Filter>
     </ClCompile>
@@ -152,35 +140,50 @@
     <ClCompile Include="3rdParty\FastDelegate\Demo.cpp">
       <Filter>Source Files\3rdParty\FastDelegate</Filter>
     </ClCompile>
-    <ClCompile Include="D3DRenderer.cpp">
+    <ClCompile Include="src\SphereRenderComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransformComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Actor.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoxRenderComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RotationAnimatorComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Geometry.cpp">
       <Filter>Source Files\Graphics3D</Filter>
     </ClCompile>
-    <ClCompile Include="SceneNode.cpp">
+    <ClCompile Include="src\Scene.cpp">
       <Filter>Source Files\Graphics3D</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry.cpp">
+    <ClCompile Include="src\SceneNode.cpp">
       <Filter>Source Files\Graphics3D</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="src\D3DRenderer.cpp">
       <Filter>Source Files\Graphics3D</Filter>
     </ClCompile>
-    <ClCompile Include="String.cpp">
+    <ClCompile Include="src\String.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\Actors</Filter>
+    <ClCompile Include="src\GameTimer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TransformComponent.cpp">
-      <Filter>Source Files\Actors</Filter>
+    <ClCompile Include="src\MathHelper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BoxRenderComponent.cpp">
-      <Filter>Source Files\Actors</Filter>
+    <ClCompile Include="src\TestApp1.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RotationAnimationComponent.cpp">
-      <Filter>Source Files\Actors</Filter>
+    <ClCompile Include="src\d3dApp.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SphereRenderComponent.cpp">
-      <Filter>Source Files\Actors</Filter>
+    <ClCompile Include="src\dxerr.cpp">
+      <Filter>Source Files\external</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
