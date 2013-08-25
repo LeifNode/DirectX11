@@ -187,6 +187,7 @@
     <ClCompile Include="src\GameTimer.cpp" />
     <ClCompile Include="src\Geometry.cpp" />
     <ClCompile Include="src\MathHelper.cpp" />
+    <ClCompile Include="src\MeshRenderComponent.cpp" />
     <ClCompile Include="src\RotationAnimatorComponent.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
