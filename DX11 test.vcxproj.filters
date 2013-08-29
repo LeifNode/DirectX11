@@ -120,14 +120,17 @@
     <ClInclude Include="src\MeshRenderComponent.h">
       <Filter>Source Files\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Source Files\EventManager</Filter>
-    </ClInclude>
     <ClInclude Include="src\Interfaces.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Templates.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\EventManager.h">
+      <Filter>Source Files\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events.h">
+      <Filter>Source Files\EventManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="src\MeshRenderComponent.cpp">
       <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventManager.cpp">
+      <Filter>Source Files\EventManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

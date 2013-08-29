@@ -149,7 +149,6 @@
     <ClInclude Include="3rdParty\FastDelegate\FastDelegateBind.h" />
     <ClInclude Include="3rdParty\TinyXML\tinystr.h" />
     <ClInclude Include="3rdParty\TinyXML\tinyxml.h" />
-    <ClInclude Include="EventManager.h" />
     <ClInclude Include="src\Actor.h" />
     <ClInclude Include="src\ActorComponent.h" />
     <ClInclude Include="src\BoxRenderComponent.h" />
@@ -159,6 +158,8 @@
     <ClInclude Include="src\D3DRenderer.h" />
     <ClInclude Include="src\d3dStd.h" />
     <ClInclude Include="src\dxerr.h" />
+    <ClInclude Include="src\EventManager.h" />
+    <ClInclude Include="src\Events.h" />
     <ClInclude Include="src\GameTimer.h" />
     <ClInclude Include="src\Geometry.h" />
     <ClInclude Include="src\Interfaces.h" />
@@ -170,9 +171,9 @@
     <ClInclude Include="src\SceneNode.h" />
     <ClInclude Include="src\SphereRenderComponent.h" />
     <ClInclude Include="src\String.h" />
+    <ClInclude Include="src\Templates.h" />
     <ClInclude Include="src\TestApp1.h" />
     <ClInclude Include="src\TransformComponent.h" />
-    <ClInclude Include="Templates.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\FastDelegate\Demo.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="src\d3dApp.cpp" />
     <ClCompile Include="src\D3DRenderer.cpp" />
     <ClCompile Include="src\dxerr.cpp" />
+    <ClCompile Include="src\EventManager.cpp" />
     <ClCompile Include="src\GameTimer.cpp" />
     <ClCompile Include="src\Geometry.cpp" />
     <ClCompile Include="src\MathHelper.cpp" />
