@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{fc2153e2-4ed7-4f06-848b-24f36860ebea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EventManager">
+      <UniqueIdentifier>{d361f18f-eef1-4a03-a866-fe7727cbca2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\TinyXML\tinystr.h">
@@ -67,9 +70,6 @@
       <Filter>Source Files\Actors</Filter>
     </ClInclude>
     <ClInclude Include="src\ActorComponent.h">
-      <Filter>Source Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BaseRenderComponent.h">
       <Filter>Source Files\Actors</Filter>
     </ClInclude>
     <ClInclude Include="src\BoxRenderComponent.h">
@@ -108,9 +108,6 @@
     <ClInclude Include="src\GameTimer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Interfaces.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\MathHelper.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -122,6 +119,15 @@
     </ClInclude>
     <ClInclude Include="src\MeshRenderComponent.h">
       <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Source Files\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Interfaces.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

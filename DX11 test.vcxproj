@@ -149,9 +149,9 @@
     <ClInclude Include="3rdParty\FastDelegate\FastDelegateBind.h" />
     <ClInclude Include="3rdParty\TinyXML\tinystr.h" />
     <ClInclude Include="3rdParty\TinyXML\tinyxml.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="src\Actor.h" />
     <ClInclude Include="src\ActorComponent.h" />
-    <ClInclude Include="src\BaseRenderComponent.h" />
     <ClInclude Include="src\BoxRenderComponent.h" />
     <ClInclude Include="src\CameraNode.h" />
     <ClInclude Include="src\ConstantBuffers.h" />
@@ -172,6 +172,7 @@
     <ClInclude Include="src\String.h" />
     <ClInclude Include="src\TestApp1.h" />
     <ClInclude Include="src\TransformComponent.h" />
+    <ClInclude Include="Templates.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\FastDelegate\Demo.cpp" />

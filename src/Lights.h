@@ -37,3 +37,4 @@ struct PointLight
 	XMFLOAT4 Att;
 	float pad;
 };
+
