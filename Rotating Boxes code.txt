@@ -1,0 +1,137 @@
+unsigned id = 1;
+
+	for (int boxX = 0; boxX < 3; boxX++)
+	{
+		for (int boxY = 0; boxY < 3; boxY++)
+		{
+			for (int boxZ = 0; boxZ < 3; boxZ++)
+			{
+				ActorPtr newBox = ActorPtr(new Actor(id++));
+	
+				BoxRenderComponent* boxRenderer = new BoxRenderComponent(mpVertexShader, mpPixelShader);
+				TransformComponent* boxTransform = new TransformComponent(&XMMatrixTranslation(10.0f * boxX, 10.0f * boxY, 10.0f * boxZ));
+				RotationAnimatorComponent* boxRotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+
+				newBox->addComponent(ActorComponentPtr(boxRenderer));
+				newBox->addComponent(ActorComponentPtr(boxTransform));
+				newBox->addComponent(ActorComponentPtr(boxRotator));
+
+				mpScene->addChild(newBox); 
+
+				ActorPtr lastChild = newBox;
+
+				for (int i = 0; i < 5; i++)
+				{
+					ActorPtr childSphere = ActorPtr(new Actor(id++));
+
+					SphereRenderComponent* SphereRenderer2 = new SphereRenderComponent(mpVertexShader, mpPixelShader, 0.5f, 15, 15);
+					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(2.0f, 0.0f, 0.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+			
+
+					childSphere->addComponent(ActorComponentPtr(SphereRenderer2));
+					childSphere->addComponent(ActorComponentPtr(childTransform));
+					childSphere->addComponent(ActorComponentPtr(rotator));
+
+					lastChild->addChild(childSphere);
+
+					lastChild = childSphere;
+				}
+
+				lastChild = newBox;
+				for (int i = 0; i < 5; i++)
+				{
+					ActorPtr childBox = ActorPtr(new Actor(id++));
+
+					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(-2.0f, 0.0f, 0.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+			
+
+					childBox->addComponent(ActorComponentPtr(boxRenderer2));
+					childBox->addComponent(ActorComponentPtr(childTransform));
+					childBox->addComponent(ActorComponentPtr(rotator));
+
+					lastChild->addChild(childBox);
+
+					lastChild = childBox;
+				}
+
+				lastChild = newBox;
+				for (int i = 0; i < 5; i++)
+				{
+					ActorPtr childBox = ActorPtr(new Actor(id++));
+
+					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, 2.0f, 0.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 1.0f));
+			
+
+					childBox->addComponent(ActorComponentPtr(boxRenderer2));
+					childBox->addComponent(ActorComponentPtr(childTransform));
+					childBox->addComponent(ActorComponentPtr(rotator));
+
+					lastChild->addChild(childBox);
+
+					lastChild = childBox;
+				}
+
+				lastChild = newBox;
+				for (int i = 0; i < 5; i++)
+				{
+					ActorPtr childBox = ActorPtr(new Actor(id++));
+
+					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, -2.0f, 0.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 1.0f));
+			
+
+					childBox->addComponent(ActorComponentPtr(boxRenderer2));
+					childBox->addComponent(ActorComponentPtr(childTransform));
+					childBox->addComponent(ActorComponentPtr(rotator));
+
+					lastChild->addChild(childBox);
+
+					lastChild = childBox;
+				}
+
+				lastChild = newBox;
+				for (int i = 0; i < 5; i++)
+				{
+					ActorPtr childBox = ActorPtr(new Actor(id++));
+
+					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, 0.0f, 2.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+			
+
+					childBox->addComponent(ActorComponentPtr(boxRenderer2));
+					childBox->addComponent(ActorComponentPtr(childTransform));
+					childBox->addComponent(ActorComponentPtr(rotator));
+
+					lastChild->addChild(childBox);
+
+					lastChild = childBox;
+				}
+
+				lastChild = newBox;
+				for (int i = 0; i < 5; i++)
+				{
+					ActorPtr childBox = ActorPtr(new Actor(id++));
+
+					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, 0.0f, -2.0f)));
+					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+			
+
+					childBox->addComponent(ActorComponentPtr(boxRenderer2));
+					childBox->addComponent(ActorComponentPtr(childTransform));
+					childBox->addComponent(ActorComponentPtr(rotator));
+
+					lastChild->addChild(childBox);
+
+					lastChild = childBox;
+				}
+			}
+		}
+	}
