@@ -43,6 +43,9 @@
     <Filter Include="Source Files\EventManager">
       <UniqueIdentifier>{d361f18f-eef1-4a03-a866-fe7727cbca2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Actors\Steering">
+      <UniqueIdentifier>{f255cc1d-85c7-4138-bdfd-18feb7b46a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\TinyXML\tinystr.h">
@@ -132,6 +135,12 @@
     <ClInclude Include="src\Events.h">
       <Filter>Source Files\EventManager</Filter>
     </ClInclude>
+    <ClInclude Include="src\KinematicComponent.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Steering.h">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\TinyXML\tinystr.cpp">
@@ -199,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="src\EventManager.cpp">
       <Filter>Source Files\EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KinematicComponent.cpp">
+      <Filter>Source Files\Actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -163,6 +163,7 @@
     <ClInclude Include="src\GameTimer.h" />
     <ClInclude Include="src\Geometry.h" />
     <ClInclude Include="src\Interfaces.h" />
+    <ClInclude Include="src\KinematicComponent.h" />
     <ClInclude Include="src\Lights.h" />
     <ClInclude Include="src\MathHelper.h" />
     <ClInclude Include="src\MeshRenderComponent.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SceneNode.h" />
     <ClInclude Include="src\SphereRenderComponent.h" />
+    <ClInclude Include="src\Steering.h" />
     <ClInclude Include="src\String.h" />
     <ClInclude Include="src\Templates.h" />
     <ClInclude Include="src\TestApp1.h" />
@@ -189,6 +191,7 @@
     <ClCompile Include="src\EventManager.cpp" />
     <ClCompile Include="src\GameTimer.cpp" />
     <ClCompile Include="src\Geometry.cpp" />
+    <ClCompile Include="src\KinematicComponent.cpp" />
     <ClCompile Include="src\MathHelper.cpp" />
     <ClCompile Include="src\MeshRenderComponent.cpp" />
     <ClCompile Include="src\RotationAnimatorComponent.cpp" />
