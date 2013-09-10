@@ -11,6 +11,14 @@ Actor::~Actor()
 {
 }
 
+void Actor::initialize(TiXmlElement* descriptor)
+{
+	for (auto it = mComponents.begin(); it != mComponents.end(); ++it)
+	{
+		it->second->VInit(NULL);
+	}
+}
+
 void Actor::setTransform(const XMMATRIX *toWorld, const XMMATRIX *fromWorld)
 {
 

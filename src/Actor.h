@@ -17,6 +17,8 @@ public:
 	Actor(ActorId id);
 	~Actor();
 
+	void initialize(TiXmlElement*);
+
 	void setTransform(const XMMATRIX *toWorld, const XMMATRIX *fromWorld);
 	void getTransform(XMMATRIX *toWorldOut, XMMATRIX *fromWorldOut);
 
@@ -68,8 +70,8 @@ public:
         }
     }
 
-	weak_ptr<TransformComponent> Transform();
-	weak_ptr<BaseRenderComponent> Renderer();
+	//weak_ptr<TransformComponent> Transform();
+	//weak_ptr<BaseRenderComponent> Renderer();
 
 
 private:
@@ -79,5 +81,5 @@ private:
 	std::vector<ActorPtr> mChildren;
 
 	std::map<ComponentId, ActorComponentPtr> mComponents;
-	weak_ptr<TransformComponent> mTransformComponent;
+	//weak_ptr<TransformComponent> mTransformComponent;
 };

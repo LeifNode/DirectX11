@@ -2,14 +2,18 @@
 
 #include "ActorComponent.h"
 #include "Steering.h"
+#include "TransformComponent.h"
 #include <map>
 #include <vector>
+#include <memory>
 
 class KinematicComponent : public ActorComponent
 {
 public:
 	KinematicComponent(float maxSpeed = 10.0f);
 	virtual ~KinematicComponent() { }
+
+	virtual void VInit(TiXmlElement*);
 
 	virtual const char* VGetName() const { return gName; }
 
@@ -38,6 +42,9 @@ private:
 private:
 	XMFLOAT3 mVelocity;
 	float mMaxSpeed;
+	float mMaxAcceleration;
+
+	std::weak_ptr<TransformComponent> mpTransform;
 
 	std::vector<WeightedSteering> mSteeringMap;
 };

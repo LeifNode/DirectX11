@@ -7,9 +7,8 @@
 #include "CameraNode.h"
 #include "Actor.h"
 #include "TransformComponent.h"
-#include "BoxRenderComponent.h"
 #include "RotationAnimatorComponent.h"
-#include "SphereRenderComponent.h"
+#include "MeshRenderComponent.h"
 
 #include <DirectXMath.h>
 
@@ -119,7 +118,32 @@ void TestApp1::buildFX()
 
 void TestApp1::buildGeometryBuffers()
 {
-	
+	unsigned id = 1;
+
+	Mesh sphere;
+	GeometryGenerator::CreateSphere(1.5f, 20, 20, sphere);
+
+	for (int boxX = 0; boxX < 3; boxX++)
+	{
+		for (int boxY = 0; boxY < 3; boxY++)
+		{
+			for (int boxZ = 0; boxZ < 3; boxZ++)
+			{
+				ActorPtr newBox = ActorPtr(new Actor(id++));
+
+
+				MeshRenderComponent* boxRenderer = new MeshRenderComponent(sphere, mpVertexShader, mpPixelShader);
+				TransformComponent* boxTransform = new TransformComponent(&XMMatrixTranslation(10.0f * boxX, 10.0f * boxY, 10.0f * boxZ));
+				RotationAnimatorComponent* boxRotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+
+				newBox->addComponent(ActorComponentPtr(boxRenderer));
+				newBox->addComponent(ActorComponentPtr(boxTransform));
+				newBox->addComponent(ActorComponentPtr(boxRotator));
+
+				mpScene->addChild(newBox); 
+			}
+		}
+	}
 }
 
 void TestApp1::onResize()
