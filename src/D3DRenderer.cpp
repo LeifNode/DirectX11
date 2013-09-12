@@ -27,6 +27,8 @@ D3DRenderer::D3DRenderer()
 
 D3DRenderer::~D3DRenderer()
 {
+	
+
 	ReleaseCOM(mRenderTarget);
 	ReleaseCOM(mDepthStencilView);
 	ReleaseCOM(mSwapChain);
@@ -217,6 +219,8 @@ bool D3DRenderer::initialize()
 
 	md3dDevice->CreateRasterizerState(&rasterDesc, &rasterState);
 	md3dImmediateContext->RSSetState(rasterState);
+
+	ReleaseCOM(rasterState);
 
 	onResize();
 

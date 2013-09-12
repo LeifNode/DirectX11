@@ -1,14 +1,16 @@
 #include "TransformComponent.h"
 #include "Scene.h"
+#include "MathHelper.h"
 
 const char* TransformComponent::gName = "Transform";
 
-TransformComponent::TransformComponent(XMMATRIX* pToWorldInit)
+TransformComponent::TransformComponent(const XMFLOAT3& position, const XMFLOAT3& rotation, const XMFLOAT3& scale)
+	:mPosition(position),
+	mRotation(rotation),
+	mScale(scale),
+	mNeedsRefresh(true)
 {
-	if (pToWorldInit)
-		mToWorld = *pToWorldInit;
-	else
-		mToWorld = XMMatrixIdentity();
+	calculateTransform();
 }
 
 TransformComponent::~TransformComponent()
@@ -16,6 +18,8 @@ TransformComponent::~TransformComponent()
 
 void TransformComponent::VPreRender()
 {
+	calculateTransform();
+
 	Scene::getScene()->pushAndSetMatrix(mToWorld);
 }
 
@@ -24,19 +28,62 @@ void TransformComponent::VPostRender()
 	Scene::getScene()->popMatrix();
 }
 
-//XMFLOAT3 TransformComponent::getPosition() const
-//{
-//	return XMFLOAT3(XMVectorGetX(mToWorld.r[3]), XMVectorGetY(mToWorld.r[3]), XMVectorGetZ(mToWorld.r[3]));
-//}
-//
-//void TransformComponent::setPosition(const XMFLOAT3& newPos)
-//{
-//	XMVECTOR newVec = XMVectorSet(newPos.x, newPos.y, newPos.z, 1.0f);
-//
-//	mToWorld.r[3] = newVec;
-//}
+const XMMATRIX* TransformComponent::getToWorldLocal()
+{
+	calculateTransform();
+	return &mToWorld;
+}
+
+XMMATRIX TransformComponent::getFromWorldLocal()
+{
+	calculateTransform();
+	return XMMatrixInverse(nullptr, mToWorld);
+}
+
+XMMATRIX TransformComponent::getToWorldGlobal()
+{
+	WeakActorPtr currentParent = mpOwner->getParent();
+
+	XMMATRIX toWorld = mToWorld;
+	std::weak_ptr<TransformComponent> currentTransform;
+
+	while (!currentParent.expired())
+	{
+		currentTransform = currentParent.lock()->getComponent<TransformComponent>(TransformComponent::gName);
+
+		if (!currentTransform.expired())
+		{
+			toWorld = *currentTransform.lock()->getToWorldLocal() * toWorld;
+		}
+
+		currentParent = currentParent.lock()->getParent();
+	}
+
+	return toWorld;
+}
+
+XMMATRIX TransformComponent::getFromWorldGlobal()
+{
+	return XMMatrixInverse(nullptr, getToWorldGlobal());
+}
 
 void TransformComponent::rotate(float x, float y, float z)
 {
-	mToWorld = XMMatrixRotationRollPitchYaw(x, y, z) * mToWorld;
+	mRotation = XMFLOAT3(MathHelper::WrapAngle(mRotation.x + x), MathHelper::WrapAngle(mRotation.y + y), MathHelper::WrapAngle(mRotation.z + z));
+	flagRefresh();
+}
+
+void TransformComponent::calculateTransform()
+{
+	if (mNeedsRefresh)
+	{
+		Vector3 zeroFloat = Vector3();
+
+		mToWorld = XMMatrixAffineTransformation(XMLoadFloat3(&mScale), 
+												XMLoadFloat3(&zeroFloat), 
+												XMQuaternionRotationRollPitchYawFromVector(XMLoadFloat3(&mRotation)), 
+												XMLoadFloat3(&mPosition));
+
+		mNeedsRefresh = false;
+	}
 }

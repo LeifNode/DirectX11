@@ -4,8 +4,10 @@
 
 #include "d3dStd.h"
 #include "GameTimer.h"
+#include "InputSystem.h"
 
 class D3DRenderer;
+class InputSystem;
 
 class D3DApp
 {
@@ -18,6 +20,8 @@ public:
 	int getClientWidth() const { return mClientWidth; }
 	int getClientHeight() const { return mClientHeight; }
 	float aspectRatio() const;
+
+	D3DRenderer* getRenderer() const { return mpRenderer; }
 
 	int Run();
 
@@ -34,6 +38,7 @@ public:
 
 protected:
 	bool initWindow();
+	bool initConsole();
 
 	void calculateFrameStats();
 
@@ -41,6 +46,7 @@ protected:
 
 	HINSTANCE mhAppInstance;
 	HWND mhWnd;
+	HWND mhConsoleWnd;
 
 	bool      mAppPaused;
 	bool      mMinimized;
@@ -48,6 +54,7 @@ protected:
 	bool      mResizing;
 
 	D3DRenderer* mpRenderer;
+	InputSystem* mpInputSystem;
 
 	GameTimer mTimer;
 

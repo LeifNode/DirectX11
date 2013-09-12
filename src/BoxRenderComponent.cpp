@@ -19,7 +19,7 @@ BoxRenderComponent::BoxRenderComponent(ID3D11VertexShader* vertShaderPtr, ID3D11
 
 	D3D11_BUFFER_DESC bd;
 	bd.Usage = D3D11_USAGE_IMMUTABLE;
-	bd.ByteWidth = sizeof(Vertex) * boxMesh.Vertices.size();
+	bd.ByteWidth = sizeof(Vertex) * (UINT)boxMesh.Vertices.size();
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.CPUAccessFlags = 0;
 	bd.MiscFlags = 0;
@@ -32,7 +32,7 @@ BoxRenderComponent::BoxRenderComponent(ID3D11VertexShader* vertShaderPtr, ID3D11
 
 	D3D11_BUFFER_DESC ibd;
 	ibd.Usage = D3D11_USAGE_IMMUTABLE;
-	ibd.ByteWidth = sizeof(UINT) * boxMesh.Indices.size();
+	ibd.ByteWidth = sizeof(UINT) * (UINT)boxMesh.Indices.size();
 	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	ibd.CPUAccessFlags = 0;
 	ibd.MiscFlags = 0;

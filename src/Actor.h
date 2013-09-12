@@ -19,8 +19,8 @@ public:
 
 	void initialize(TiXmlElement*);
 
-	void setTransform(const XMMATRIX *toWorld, const XMMATRIX *fromWorld);
-	void getTransform(XMMATRIX *toWorldOut, XMMATRIX *fromWorldOut);
+	//void setTransform(const XMMATRIX *toWorld, const XMMATRIX *fromWorld);
+	//void getTransform(XMMATRIX *toWorldOut, XMMATRIX *fromWorldOut);
 
 	HRESULT update(float const elapsedMs);
 	HRESULT onRestore();

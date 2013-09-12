@@ -4,19 +4,20 @@
 #include "D3DRenderer.h"
 #include "CameraNode.h"
 #include "ConstantBuffers.h"
+#include <iostream>
 
 const char* MeshRenderComponent::gName = "MeshRender";
 
 MeshRenderComponent::MeshRenderComponent(const Mesh& mesh, ID3D11VertexShader* pVertexShader, ID3D11PixelShader* pPixelShader)
 	:mpVertexShader(pVertexShader),
 	mpPixelShader(pPixelShader),
-	mIndexCount(mesh.Indices.size())
+	mIndexCount((UINT)mesh.Indices.size())
 {
 	D3DRenderer* renderer = Scene::getScene()->getRenderer();
 
 	D3D11_BUFFER_DESC bd;
 	bd.Usage = D3D11_USAGE_IMMUTABLE;
-	bd.ByteWidth = sizeof(Vertex) * mesh.Vertices.size();
+	bd.ByteWidth = sizeof(Vertex) * (UINT)mesh.Vertices.size();
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.CPUAccessFlags = 0;
 	bd.MiscFlags = 0;
@@ -29,7 +30,7 @@ MeshRenderComponent::MeshRenderComponent(const Mesh& mesh, ID3D11VertexShader* p
 
 	D3D11_BUFFER_DESC ibd;
 	ibd.Usage = D3D11_USAGE_IMMUTABLE;
-	ibd.ByteWidth = sizeof(UINT) * mesh.Indices.size();
+	ibd.ByteWidth = sizeof(UINT) * (UINT)mesh.Indices.size();
 	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	ibd.CPUAccessFlags = 0;
 	ibd.MiscFlags = 0;
@@ -51,6 +52,8 @@ MeshRenderComponent::~MeshRenderComponent()
 	ReleaseCOM(mMeshVB);
 	ReleaseCOM(mMeshIB);
 	ReleaseCOM(mTransformBuffer);
+
+	//std::cout << "Deleted MeshRenderComponent at " << this << std::endl;
 }
 
 void MeshRenderComponent::VRender()

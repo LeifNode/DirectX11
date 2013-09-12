@@ -2,13 +2,23 @@
 
 #include "d3dApp.h"
 
+class BoidManager;
+
 class TestApp1 : public D3DApp
 {
 public:
 	TestApp1(HINSTANCE hInstance);
-	~TestApp1();
+	virtual ~TestApp1();
+
+	void cleanup();
 
 	bool Initialize();
+
+	void hookInputEvents();
+	void unhookInputEvents();
+
+	void onKeyDown(IEventDataPtr);
+
 	void onResize();
 	void Update(float dt);
 	void Draw();
@@ -18,7 +28,7 @@ public:
 	void onMouseMove(WPARAM btnState, int x, int y);
 
 private:
-	void buildGeometryBuffers();
+	void createActors();
 	void buildFX();
 
 private:
@@ -30,6 +40,8 @@ private:
 	ID3D11InputLayout* mInputLayout;
 	ID3D11VertexShader* mpVertexShader;
 	ID3D11PixelShader* mpPixelShader;
+
+	BoidManager* mpBoidManager;
 
 	float mTheta, mPhi, mRadius;
 

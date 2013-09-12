@@ -9,8 +9,15 @@
 #include "TransformComponent.h"
 #include "RotationAnimatorComponent.h"
 #include "MeshRenderComponent.h"
-
+#include "BoidManager.h"
+#include "CohesionSteering.h"
+#include "SeparationSteering.h"
+#include "AlignSteering.h"
+#include "KinematicComponent.h"
+#include "Events.h"
+#include <iostream>
 #include <DirectXMath.h>
+#include "..\3rdParty\FastDelegate\FastDelegate.h"
 
 struct CBChangesPerObject
 {
@@ -32,12 +39,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdLine, in
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
 
-	TestApp1 application(hInstance);
+	TestApp1* application = new TestApp1(hInstance);
 
-	if (!application.Initialize())
+	if (!application->Initialize())
 		return 0;
 
-	return application.Run();
+	int returnVal = application->Run();
+//
+//#if defined(DEBUG) | defined(_DEBUG)
+//	ID3D11Debug* debugInterface;
+//
+//	application->getRenderer()->device()->QueryInterface(__uuidof(ID3D11Debug), reinterpret_cast<void**>(&debugInterface));
+//
+//	delete application;
+//	application = nullptr;
+//
+//	debugInterface->ReportLiveDeviceObjects(D3D11_RLDO_DETAIL);
+//#endif
+
+	delete application;
+
+	return returnVal;
 }
 
 TestApp1::TestApp1(HINSTANCE hInstance)
@@ -61,6 +83,12 @@ TestApp1::TestApp1(HINSTANCE hInstance)
 TestApp1::~TestApp1()
 {
 	delete mpScene;
+	mpScene = nullptr;
+
+	unhookInputEvents();
+
+	ReleaseCOM(mpVertexShader);
+	ReleaseCOM(mpPixelShader);
 }
 
 bool TestApp1::Initialize()
@@ -73,9 +101,29 @@ bool TestApp1::Initialize()
 	mpScene = new Scene(mpRenderer);
 
 	buildFX();
-	buildGeometryBuffers();
+	createActors();
+
+	hookInputEvents();
 
 	return true;
+}
+
+void TestApp1::hookInputEvents()
+{
+	EventSystem::get()->addListener(EventData_KeyboardDown::skEventType, fastdelegate::MakeDelegate(this, &TestApp1::onKeyDown));
+}
+
+void TestApp1::unhookInputEvents()
+{
+	EventSystem::get()->removeListener(EventData_KeyboardDown::skEventType, fastdelegate::MakeDelegate(this, &TestApp1::onKeyDown));
+}
+
+void TestApp1::onKeyDown(IEventDataPtr eventData)
+{
+	shared_ptr<EventData_KeyboardDown> dataPtr = static_pointer_cast<EventData_KeyboardDown>(eventData);
+
+	if (dataPtr->getKey() == KEY_G)
+		std::cout << (char)dataPtr->getKey() << std::endl;
 }
 
 void TestApp1::buildFX()
@@ -116,33 +164,34 @@ void TestApp1::buildFX()
 	PSBlob->Release();
 }
 
-void TestApp1::buildGeometryBuffers()
+void TestApp1::createActors()
 {
-	unsigned id = 1;
+	mpBoidManager = new BoidManager();
+	unsigned currentId = 1;
 
-	Mesh sphere;
-	GeometryGenerator::CreateSphere(1.5f, 20, 20, sphere);
+	Mesh boxMesh;
+	GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f, boxMesh);
 
-	for (int boxX = 0; boxX < 3; boxX++)
+	for (unsigned i = 0; i < 1; i++)
 	{
-		for (int boxY = 0; boxY < 3; boxY++)
-		{
-			for (int boxZ = 0; boxZ < 3; boxZ++)
-			{
-				ActorPtr newBox = ActorPtr(new Actor(id++));
+		ActorPtr newBoid = ActorPtr(new Actor(currentId++));
 
+		TransformComponent* boidTransform = new TransformComponent(Vector3((rand()/RAND_MAX)*5.0f, (rand()/RAND_MAX)*5.0f, (rand()/RAND_MAX)*5.0f),
+																   Vector3(), 
+																   Vector3(5.0f));
+		MeshRenderComponent* BoidMesh = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, 0.01f, 0.4f);
+		boidKinematic->addSteering(new SeparationSteering(5.0f), 1.0f);
+		boidKinematic->addSteering(new CohesionSteering(10.0f, 0.0f), 1.0f);
+		boidKinematic->addSteering(new AlignSteering(15.0f, 0.0f), 2.0f);
 
-				MeshRenderComponent* boxRenderer = new MeshRenderComponent(sphere, mpVertexShader, mpPixelShader);
-				TransformComponent* boxTransform = new TransformComponent(&XMMatrixTranslation(10.0f * boxX, 10.0f * boxY, 10.0f * boxZ));
-				RotationAnimatorComponent* boxRotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
+		newBoid->addComponent(ActorComponentPtr(boidTransform));
+		newBoid->addComponent(ActorComponentPtr(BoidMesh));
+		newBoid->addComponent(ActorComponentPtr(boidKinematic));
 
-				newBox->addComponent(ActorComponentPtr(boxRenderer));
-				newBox->addComponent(ActorComponentPtr(boxTransform));
-				newBox->addComponent(ActorComponentPtr(boxRotator));
+		newBoid->initialize(NULL);
 
-				mpScene->addChild(newBox); 
-			}
-		}
+		mpScene->addChild(newBoid);
 	}
 }
 

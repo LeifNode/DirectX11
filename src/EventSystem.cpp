@@ -1,25 +1,25 @@
-#include "EventManager.h"
+#include "EventSystem.h"
 
-EventManager* EventManager::mpInstance = NULL;
-GenericObjectFactory<IEventData, EventType> gEventFactory;
+EventSystem* EventSystem::mpInstance = NULL;
 
-EventManager::EventManager()
+EventSystem::EventSystem()
 {}
 
-EventManager::~EventManager()
+EventSystem::~EventSystem()
 {
 	mpInstance = NULL;
+	clear();
 }
 
-EventManager* EventManager::get()
+EventSystem* EventSystem::get()
 {
 	if (mpInstance)
 		return mpInstance;
 	else
-		return mpInstance = new EventManager();
+		return mpInstance = new EventSystem();
 }
 
-bool EventManager::addListener(const EventType& type, const EventListenerDelegate& eventDelegate)
+bool EventSystem::addListener(const EventType& type, const EventListenerDelegate& eventDelegate)
 {
 	EventListenerList& eventListenerList = mEventListeners[type];
 
@@ -34,11 +34,32 @@ bool EventManager::addListener(const EventType& type, const EventListenerDelegat
 	return true;
 }
 
-bool EventManager::triggerEvent(const IEventDataPtr& pEvent) const
+bool EventSystem::removeListener(const EventType& type, const EventListenerDelegate& eventDelegate)
+{
+	auto it = mEventListeners.find(type);
+
+	if (it != mEventListeners.end())
+	{
+		EventListenerList& listeners = it->second;
+
+		for (auto i = listeners.begin(); i != listeners.end(); ++i)
+		{
+			if (eventDelegate == (*i))
+			{
+				listeners.erase(i);
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+bool EventSystem::triggerEvent(const IEventDataPtr& pEvent) const
 {
 	bool processed = false;
 
-	auto i = mEventListeners.find(pEvent->VGetEventType());
+	auto i = mEventListeners.find(pEvent->getEventType());
 	if (i != mEventListeners.end())
 	{
 		const EventListenerList& eventListenerList = i->second;
@@ -53,12 +74,12 @@ bool EventManager::triggerEvent(const IEventDataPtr& pEvent) const
 	return processed;
 }
 
-bool EventManager::queueEvent(const IEventDataPtr& pEvent)
+bool EventSystem::queueEvent(const IEventDataPtr& pEvent)
 {
 	if (!pEvent)
 		return false;
 
-	auto i = mEventListeners.find(pEvent->VGetEventType());
+	auto i = mEventListeners.find(pEvent->getEventType());
 	if (i != mEventListeners.end())
 	{
 		mQueue.push_back(pEvent);
@@ -71,15 +92,25 @@ bool EventManager::queueEvent(const IEventDataPtr& pEvent)
 	}
 }
 
+void EventSystem::clear()
+{
+	for (auto i = mEventListeners.begin(); i != mEventListeners.end(); ++i)
+	{
+		i->second.clear();
+	}
+
+	mEventListeners.clear();
+}
+
 //Cut the max time for now
-bool EventManager::update(unsigned long maxMillis)
+bool EventSystem::update(unsigned long maxMillis)
 {
 	while (!mQueue.empty())
 	{
 		IEventDataPtr pEvent = mQueue.front();
 		mQueue.pop_front();
 
-		const EventType& eventType = pEvent->VGetEventType();
+		const EventType& eventType = pEvent->getEventType();
 
 		auto find = mEventListeners.find(eventType);
 		if (find != mEventListeners.end())
@@ -93,4 +124,6 @@ bool EventManager::update(unsigned long maxMillis)
 			}
 		}
 	}
+
+	return true;
 }

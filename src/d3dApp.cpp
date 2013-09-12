@@ -35,6 +35,9 @@ D3DApp::D3DApp(HINSTANCE hInstance)
 	gpApplication = this;
 
 	mpRenderer = new D3DRenderer();
+	mpInputSystem = new InputSystem();
+
+	EventSystem::get();
 }
 
 D3DApp::~D3DApp()
@@ -67,7 +70,8 @@ int D3DApp::Run()
 			if( !mAppPaused )
 			{
 				calculateFrameStats();
-				Update(mTimer.DeltaTime());	
+				EventSystem::get()->update();
+				Update((float)mTimer.DeltaTime());	
 				Draw();
 			}
 			else
@@ -82,10 +86,16 @@ int D3DApp::Run()
 
 bool D3DApp::Initialize()
 {
+	if (!initConsole())
+		return false;
+
 	if (!initWindow())
 		return false;
 
 	if (!mpRenderer->initialize())
+		return false;
+
+	if(!mpInputSystem->initialize())
 		return false;
 
 	return true;
@@ -219,6 +229,9 @@ LRESULT D3DApp::MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEMOVE:
 		onMouseMove(wParam, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		return 0;
+	default:
+		if (mpInputSystem->processWindowsMessage(hwnd, msg, wParam, lParam))
+			return 0;
 	}
 
 	return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -260,6 +273,28 @@ bool D3DApp::initWindow()
 
 	ShowWindow(mhWnd, SW_SHOW);
 	UpdateWindow(mhWnd);
+
+	RECT rect;
+
+	GetWindowRect(mhWnd, &rect);
+
+	MoveWindow(mhConsoleWnd, rect.right, rect.top, 450, rect.bottom - rect.top, true);
+
+	return true;
+}
+
+bool D3DApp::initConsole()
+{
+	AllocConsole();
+	FILE* stream;
+	freopen_s(&stream, "CONOUT$", "w", stdout);
+	mhConsoleWnd = GetConsoleWindow();
+
+	if (!mhConsoleWnd)
+	{
+		MessageBox(0, L"Console Initialize Failed", 0, 0);
+		return false;
+	}
 
 	return true;
 }

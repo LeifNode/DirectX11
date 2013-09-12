@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -40,11 +36,14 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{fc2153e2-4ed7-4f06-848b-24f36860ebea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\EventManager">
-      <UniqueIdentifier>{d361f18f-eef1-4a03-a866-fe7727cbca2b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Actors\Steering">
       <UniqueIdentifier>{f255cc1d-85c7-4138-bdfd-18feb7b46a1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{d361f18f-eef1-4a03-a866-fe7727cbca2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{70b8d809-6f38-4203-a374-452aa2b6e5e1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +98,6 @@
     <ClInclude Include="src\D3DRenderer.h">
       <Filter>Source Files\Graphics3D</Filter>
     </ClInclude>
-    <ClInclude Include="src\String.h">
-      <Filter>Source Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\d3dApp.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -126,19 +122,46 @@
     <ClInclude Include="src\Interfaces.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\EventManager.h">
-      <Filter>Source Files\EventManager</Filter>
-    </ClInclude>
     <ClInclude Include="src\Templates.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\Events.h">
-      <Filter>Source Files\EventManager</Filter>
+      <Filter>Source Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\KinematicComponent.h">
       <Filter>Source Files\Actors</Filter>
     </ClInclude>
     <ClInclude Include="src\Steering.h">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoidManager.h">
+      <Filter>Source Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CohesionSteering.h">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoidSteering.h">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlignSteering.h">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StringUtils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventSystem.h">
+      <Filter>Source Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InputSystem.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KeyboardState.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MouseState.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SeparationSteering.h">
       <Filter>Source Files\Actors\Steering</Filter>
     </ClInclude>
   </ItemGroup>
@@ -185,9 +208,6 @@
     <ClCompile Include="src\D3DRenderer.cpp">
       <Filter>Source Files\Graphics3D</Filter>
     </ClCompile>
-    <ClCompile Include="src\String.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -206,11 +226,38 @@
     <ClCompile Include="src\MeshRenderComponent.cpp">
       <Filter>Source Files\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="src\EventManager.cpp">
-      <Filter>Source Files\EventManager</Filter>
-    </ClCompile>
     <ClCompile Include="src\KinematicComponent.cpp">
       <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoidManager.cpp">
+      <Filter>Source Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CohesionSteering.cpp">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StringUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Events.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventSystem.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KeyboardState.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MouseState.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputSystem.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlignSteering.cpp">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SeparationSteering.cpp">
+      <Filter>Source Files\Actors\Steering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

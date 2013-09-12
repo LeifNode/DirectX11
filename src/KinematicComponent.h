@@ -7,11 +7,13 @@
 #include <vector>
 #include <memory>
 
+class BoidManager;
+
 class KinematicComponent : public ActorComponent
 {
 public:
-	KinematicComponent(float maxSpeed = 10.0f);
-	virtual ~KinematicComponent() { }
+	KinematicComponent(BoidManager* boidGroup, float maxSpeed = 10.0f, float maxAcceleration = 20.0f);
+	virtual ~KinematicComponent();
 
 	virtual void VInit(TiXmlElement*);
 
@@ -22,13 +24,23 @@ public:
 	bool addSteering(Steering*, float weight = 1.0f);
 	bool removeSteering(Steering*);
 
+	void clear();
+
 	float getSteeringWeight(Steering*);
 	bool setSteeringWeight(Steering*, float);
 
 	XMFLOAT3 getVelocity() const { return mVelocity; }
+	std::weak_ptr<TransformComponent> getTransform() const { return mpTransform; }
 
 	float getMaxSpeed() const { return mMaxSpeed; }
 	void setMaxSpeed(float speed) { mMaxSpeed = speed; }
+
+	float getMaxAcceleration() const { return mMaxAcceleration; }
+	void setMaxAcceleration(float acceleration) { mMaxAcceleration = acceleration; }
+
+	void setOrientationFromVelocity();
+
+	BoidManager* getBoidManager() const { return mpBoidManager; }
 
 	virtual void VUpdate(float dt);
 	
@@ -46,5 +58,6 @@ private:
 
 	std::weak_ptr<TransformComponent> mpTransform;
 
-	std::vector<WeightedSteering> mSteeringMap;
+	std::vector<WeightedSteering> mSteeringBehaviors;
+	BoidManager* mpBoidManager;
 };

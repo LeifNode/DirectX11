@@ -8,6 +8,9 @@
 
 const float MathHelper::Infinity = FLT_MAX;
 const float MathHelper::Pi       = 3.1415926535f;
+const float MathHelper::TwoPi	 = Pi * 2.0f;
+const float MathHelper::PiOver2	 = Pi / 2.0f;
+const float MathHelper::PiOver4	 = Pi / 4.0f;
 
 float MathHelper::AngleFromXY(float x, float y)
 {

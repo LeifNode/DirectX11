@@ -45,7 +45,7 @@
 //========================================================================
 
 #include "d3dStd.h"
-#include "string.h"
+#include "StringUtils.h"
 
 using std::string;
 
@@ -436,7 +436,7 @@ HashedString::hash_name( char const * pIdentStr )
 
 	for ( size_t len = strlen( pIdentStr ); len > 0 ; )
 	{
-        unsigned long k = len < NMAX ? len : NMAX;
+        unsigned long k = (UINT)(len < NMAX ? len : NMAX);
 
 		len -= k;
 

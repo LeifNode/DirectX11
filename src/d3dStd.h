@@ -30,6 +30,11 @@ using std::weak_ptr;
 using std::static_pointer_cast;
 using std::dynamic_pointer_cast;
 
+//Testing speed impact of disabling SIMD on the DirectXMath library
+//#ifndef _XM_NO_INTRINSICS_
+//#define _XM_NO_INTRINSICS_
+//#endif
+
 #define ReleaseCOM(x) { if(x){ x->Release(); x = 0; } }
 
 #if defined(DEBUG) | defined(_DEBUG)

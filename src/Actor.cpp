@@ -9,6 +9,7 @@ Actor::Actor(ActorId id)
 
 Actor::~Actor()
 {
+	mComponents.clear();
 }
 
 void Actor::initialize(TiXmlElement* descriptor)
@@ -17,16 +18,6 @@ void Actor::initialize(TiXmlElement* descriptor)
 	{
 		it->second->VInit(NULL);
 	}
-}
-
-void Actor::setTransform(const XMMATRIX *toWorld, const XMMATRIX *fromWorld)
-{
-
-}
-
-void Actor::getTransform(XMMATRIX *toWorldOut, XMMATRIX *fromWorldOut)
-{
-
 }
 
 HRESULT Actor::update(float const elapsedMs)

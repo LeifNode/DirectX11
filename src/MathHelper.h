@@ -4,6 +4,10 @@
 #include <Windows.h>
 #include <DirectXMath.h>
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 class MathHelper
 {
 public:
@@ -63,6 +67,15 @@ public:
 
 	static const float Infinity;
 	static const float Pi;
+	static const float TwoPi;
+	static const float PiOver2;
+	static const float PiOver4;
 
-
+	static float WrapAngle(float angle)
+	{
+		if (angle < 0.0f || angle > MathHelper::TwoPi)
+			return angle - TwoPi * floorf(angle / MathHelper::TwoPi);
+		else
+			return angle;
+	}
 };

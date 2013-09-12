@@ -1,15 +1,21 @@
 unsigned id = 1;
 
-	for (int boxX = 0; boxX < 3; boxX++)
+	Mesh boxMesh;
+	Mesh sphereMesh;
+
+	GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f, boxMesh);
+	GeometryGenerator::CreateGeosphere(0.5f, 3, sphereMesh);
+
+	for (int boxX = 0; boxX < 7; boxX++)
 	{
-		for (int boxY = 0; boxY < 3; boxY++)
+		for (int boxY = 0; boxY < 7; boxY++)
 		{
-			for (int boxZ = 0; boxZ < 3; boxZ++)
+			for (int boxZ = 0; boxZ < 7; boxZ++)
 			{
 				ActorPtr newBox = ActorPtr(new Actor(id++));
 	
-				BoxRenderComponent* boxRenderer = new BoxRenderComponent(mpVertexShader, mpPixelShader);
-				TransformComponent* boxTransform = new TransformComponent(&XMMatrixTranslation(10.0f * boxX, 10.0f * boxY, 10.0f * boxZ));
+				MeshRenderComponent* boxRenderer = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+				TransformComponent* boxTransform = new TransformComponent(Vector3(10.0f * boxX, 10.0f * boxY, 10.0f * boxZ), Vector3(), Vector3(1.0f));
 				RotationAnimatorComponent* boxRotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
 
 				newBox->addComponent(ActorComponentPtr(boxRenderer));
@@ -24,12 +30,12 @@ unsigned id = 1;
 				{
 					ActorPtr childSphere = ActorPtr(new Actor(id++));
 
-					SphereRenderComponent* SphereRenderer2 = new SphereRenderComponent(mpVertexShader, mpPixelShader, 0.5f, 15, 15);
-					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(2.0f, 0.0f, 0.0f)));
+					MeshRenderComponent* boxRenderer2 = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(Vector3(2.0f, 0.0f, 0.0f), Vector3(), Vector3(0.7f));
 					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
 			
 
-					childSphere->addComponent(ActorComponentPtr(SphereRenderer2));
+					childSphere->addComponent(ActorComponentPtr(boxRenderer2));
 					childSphere->addComponent(ActorComponentPtr(childTransform));
 					childSphere->addComponent(ActorComponentPtr(rotator));
 
@@ -43,8 +49,8 @@ unsigned id = 1;
 				{
 					ActorPtr childBox = ActorPtr(new Actor(id++));
 
-					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
-					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(-2.0f, 0.0f, 0.0f)));
+					MeshRenderComponent* boxRenderer2 = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(Vector3(-2.0f, 0.0f, 0.0f), Vector3(), Vector3(0.7f));
 					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
 			
 
@@ -62,8 +68,8 @@ unsigned id = 1;
 				{
 					ActorPtr childBox = ActorPtr(new Actor(id++));
 
-					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
-					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, 2.0f, 0.0f)));
+					MeshRenderComponent* boxRenderer2 = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(Vector3(0.0f, 2.0f, 0.0f), Vector3(), Vector3(0.7f));
 					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 1.0f));
 			
 
@@ -81,8 +87,8 @@ unsigned id = 1;
 				{
 					ActorPtr childBox = ActorPtr(new Actor(id++));
 
-					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
-					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, -2.0f, 0.0f)));
+					MeshRenderComponent* boxRenderer2 = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(Vector3(0.0f, -2.0f, 0.0f), Vector3(), Vector3(0.7f));
 					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 1.0f));
 			
 
@@ -100,8 +106,8 @@ unsigned id = 1;
 				{
 					ActorPtr childBox = ActorPtr(new Actor(id++));
 
-					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
-					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, 0.0f, 2.0f)));
+					MeshRenderComponent* boxRenderer2 = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(Vector3(0.0f, 0.0f, 2.0f), Vector3(), Vector3(0.7f));
 					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
 			
 
@@ -119,8 +125,8 @@ unsigned id = 1;
 				{
 					ActorPtr childBox = ActorPtr(new Actor(id++));
 
-					BoxRenderComponent* boxRenderer2 = new BoxRenderComponent(mpVertexShader, mpPixelShader);
-					TransformComponent* childTransform = new TransformComponent(&(XMMatrixScaling(0.7f, 0.7f, 0.7f) * XMMatrixTranslation(0.0f, 0.0f, -2.0f)));
+					MeshRenderComponent* boxRenderer2 = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
+					TransformComponent* childTransform = new TransformComponent(Vector3(0.0f, 0.0f, -2.0f), Vector3(), Vector3(0.7f));
 					RotationAnimatorComponent* rotator = new RotationAnimatorComponent(XMFLOAT3(0.0f, 1.0f, 0.0f));
 			
 

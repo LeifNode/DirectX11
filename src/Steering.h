@@ -1,10 +1,18 @@
 #pragma once
 
-class KinematicComponent;
+#include "MathHelper.h"
 
-class SteeringOut
+class KinematicComponent;
+class Vector3;
+
+struct SteeringOut
 {
-	XMFLOAT3 LinearVelocity;
+	SteeringOut():Linear(0.0f, 0.0f, 0.0f){}
+	SteeringOut(const XMFLOAT3& linear)
+		:Linear(linear)
+	{}
+
+	XMFLOAT3 Linear;
 };
 
 class Steering
@@ -12,11 +20,11 @@ class Steering
 	friend class KinematicComponent;
 
 public:
-	Steering();
-	virtual ~Steering();
+	Steering(){}
+	virtual ~Steering(){}
 
-	virtual void getSteering(SteeringOut&);
+	virtual void getSteering(SteeringOut&){}
 
-private:
+protected:
 	KinematicComponent* mpKinematic;
 };

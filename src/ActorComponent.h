@@ -1,7 +1,7 @@
 #pragma once
 
 #include "d3dStd.h"
-#include "String.h"
+#include "StringUtils.h"
 #include "Actor.h"
 
 class ActorComponent
