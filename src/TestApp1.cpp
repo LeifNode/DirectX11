@@ -68,7 +68,7 @@ TestApp1::TestApp1(HINSTANCE hInstance)
 	mpPixelShader(NULL),
 	mpVertexShader(NULL),
 	mInputLayout(NULL),
-	mTheta(1.5f*MathHelper::Pi), mPhi(0.25f*MathHelper::Pi), mRadius(10.0f), currentRot(0.0f)
+	mTheta(1.5f*MathHelper::Pi), mPhi(0.25f*MathHelper::Pi), mRadius(40.0f), currentRot(0.0f)
 {
 	mMainWndCaption = L"Test App";
 
@@ -172,18 +172,25 @@ void TestApp1::createActors()
 	Mesh boxMesh;
 	GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f, boxMesh);
 
-	for (unsigned i = 0; i < 1; i++)
+	for (unsigned i = 0; i < 350; i++)
 	{
 		ActorPtr newBoid = ActorPtr(new Actor(currentId++));
 
-		TransformComponent* boidTransform = new TransformComponent(Vector3((rand()/RAND_MAX)*5.0f, (rand()/RAND_MAX)*5.0f, (rand()/RAND_MAX)*5.0f),
+		XMFLOAT3 randRotation;
+		XMStoreFloat3(&randRotation, MathHelper::RandUnitVec3());
+
+		const float MAX_VARIATION = 50.0f;
+
+		TransformComponent* boidTransform = new TransformComponent(Vector3((rand()/(float)RAND_MAX)*MAX_VARIATION - (rand()/(float)RAND_MAX)*MAX_VARIATION, 
+																		   (rand()/(float)RAND_MAX)*MAX_VARIATION - (rand()/(float)RAND_MAX)*MAX_VARIATION, 
+																		   (rand()/(float)RAND_MAX)*MAX_VARIATION - (rand()/(float)RAND_MAX)*MAX_VARIATION),
 																   Vector3(), 
-																   Vector3(5.0f));
+																   Vector3(0.5f));
 		MeshRenderComponent* BoidMesh = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
-		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, 0.01f, 0.4f);
-		boidKinematic->addSteering(new SeparationSteering(5.0f), 1.0f);
-		boidKinematic->addSteering(new CohesionSteering(10.0f, 0.0f), 1.0f);
-		boidKinematic->addSteering(new AlignSteering(15.0f, 0.0f), 2.0f);
+		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, Vector3(randRotation));
+		boidKinematic->addSteering(new SeparationSteering(6.0f), 5.0f);
+		boidKinematic->addSteering(new CohesionSteering(12.0f, 0.0f), 2.0f);
+		boidKinematic->addSteering(new AlignSteering(18.0f, 0.0f), 3.0f);
 
 		newBoid->addComponent(ActorComponentPtr(boidTransform));
 		newBoid->addComponent(ActorComponentPtr(BoidMesh));
@@ -270,7 +277,7 @@ void TestApp1::onMouseMove(WPARAM btnState, int x, int y)
 		mRadius += dx - dy;
 
 		// Restrict the radius.
-		mRadius = MathHelper::Clamp(mRadius, 3.0f, 15.0f);
+		mRadius = MathHelper::Clamp(mRadius, 3.0f, 50.0f);
 	}
 
 	mLastMousePos.x = x;

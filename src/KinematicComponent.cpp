@@ -8,7 +8,18 @@ const char* KinematicComponent::gName = "Kinematic";
 KinematicComponent::KinematicComponent(BoidManager* boidManager, float maxSpeed, float maxAcceleration)
 	:mMaxSpeed(maxSpeed),
 	mMaxAcceleration(maxAcceleration),
-	mpBoidManager(boidManager)
+	mpBoidManager(boidManager),
+	mVelocity(0.0f, 0.0f, 0.0f)
+{
+	assert(mpBoidManager);
+	mpBoidManager->addBoid(this);
+}
+
+KinematicComponent::KinematicComponent(BoidManager* boidManager, const XMFLOAT3& initialVelocity, float maxSpeed, float maxAcceleration)
+	:mMaxSpeed(maxSpeed),
+	mMaxAcceleration(maxAcceleration),
+	mpBoidManager(boidManager),
+	mVelocity(initialVelocity)
 {
 	assert(mpBoidManager);
 	mpBoidManager->addBoid(this);
@@ -101,7 +112,7 @@ void KinematicComponent::setOrientationFromVelocity()
 {
 	XMVECTOR rotationVec = XMVector3Normalize(XMLoadFloat3(&mVelocity));
 
-	mpTransform.lock()->setRotation(XMVectorGetX(rotationVec) * XM_2PI, XMVectorGetY(rotationVec) * XM_2PI, XMVectorGetZ(rotationVec) * XM_2PI);
+	mpTransform.lock()->setRotation(XMVectorGetX(rotationVec), XMVectorGetY(rotationVec), XMVectorGetZ(rotationVec));
 }
 
 //The weighted kinematic functionality should be pushed into its own steering behavior
@@ -131,24 +142,52 @@ void KinematicComponent::VUpdate(float dt)
 	{
 		totalWeight = 1.0f / totalWeight;
 		finalAcceleration = XMVectorMultiply(finalAcceleration, XMVectorSet(totalWeight, totalWeight, totalWeight, totalWeight));
+		finalAcceleration = XMVectorMultiply(XMVector3Normalize(finalAcceleration), XMVectorSet(mMaxAcceleration, mMaxAcceleration, mMaxAcceleration, mMaxAcceleration));
 	}
 
 	//Integration
-	float drag = powf(0.7, dt);
 
-	XMVECTOR vel = XMVectorMultiply(XMLoadFloat3(&mVelocity), XMVectorSet(drag, drag, drag, drag)); //Adds drag to current velocity
+	XMVECTOR currentPos = XMLoadFloat3(&mpTransform.lock()->getPosition());
+	XMVECTOR vel = XMLoadFloat3(&mVelocity);
+	currentPos = XMVectorMultiplyAdd(vel, XMVectorSet(dt, dt, dt, dt), currentPos);
+
+	float drag = powf(0.9, dt);
+
+	mpTransform.lock()->setPosition(XMVectorGetX(currentPos), XMVectorGetY(currentPos), XMVectorGetZ(currentPos));
+
+	vel = XMVectorMultiply(vel, XMVectorSet(drag, drag, drag, drag)); //Adds drag to current velocity
 	vel = XMVectorMultiplyAdd(finalAcceleration, XMVectorSet(dt, dt, dt, dt), vel); //Adds acceleration to current velocity
 
 	//Cap velocity
 	if (XMVectorGetX(XMVector3LengthSq(vel)) > mMaxSpeed * mMaxSpeed)
-		vel = XMVectorMultiplyAdd(XMVector3Length(vel), XMVectorSet(mMaxSpeed, mMaxSpeed, mMaxSpeed, mMaxSpeed), vel);
+		vel = XMVectorMultiply(XMVector3Normalize(vel), XMVectorSet(mMaxSpeed, mMaxSpeed, mMaxSpeed, mMaxSpeed));
 
 	XMStoreFloat3(&mVelocity, vel); //Save velocity
 
-	XMVECTOR currentPos = XMLoadFloat3(&mpTransform.lock()->getPosition());
-	currentPos = XMVectorMultiplyAdd(vel, XMVectorSet(dt, dt, dt, dt), currentPos);
-
-	mpTransform.lock()->setPosition(XMVectorGetX(currentPos), XMVectorGetY(currentPos), XMVectorGetZ(currentPos));
-
 	setOrientationFromVelocity();
+	wrapCoordinates();
+}
+
+void KinematicComponent::wrapCoordinates()
+{
+	XMFLOAT3 position = mpTransform.lock()->getPosition();
+
+	const float BOX_BOUNDS = 50.0f;
+
+	if (position.x > BOX_BOUNDS)
+		position.x = -BOX_BOUNDS;
+	else if (position.x < -BOX_BOUNDS)
+		position.x = BOX_BOUNDS;
+
+	if (position.y > BOX_BOUNDS)
+		position.y = -BOX_BOUNDS;
+	else if (position.y < -BOX_BOUNDS)
+		position.y = BOX_BOUNDS;
+
+	if (position.z > BOX_BOUNDS)
+		position.z = -BOX_BOUNDS;
+	else if (position.z < -BOX_BOUNDS)
+		position.z = BOX_BOUNDS;
+
+	mpTransform.lock()->setPosition(position);
 }

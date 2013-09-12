@@ -6,9 +6,9 @@
 void CohesionSteering::getSteering(SteeringOut& out)
 {
 	unsigned count;
-	XMVECTOR neighborhoodCenter = mpKinematic->getBoidManager()->getNeighbourhoodCenter(mpKinematic->getTransform().lock()->getPosition(), mRadius, mMinDot, count);
+	XMVECTOR neighborhoodCenter = mpKinematic->getBoidManager()->getNeighbourhoodCenter(mpKinematic, mRadius, mMinDot, &count);
 
-	if (count ==  0)
+	if (count == 0)
 		return;
 
 	XMVECTOR targetVelocity = XMVectorSubtract(neighborhoodCenter, XMLoadFloat3(&mpKinematic->getTransform().lock()->getPosition()));

@@ -34,8 +34,8 @@ public:
 	Vector3(XMFLOAT3 &vector) : XMFLOAT3(vector) { }
 	Vector3(const XMFLOAT3 &vector) : XMFLOAT3(vector) { }
 	Vector3(XMVECTOR &vector) : XMFLOAT3(XMVectorGetX(vector), XMVectorGetY(vector), XMVectorGetZ(vector)) { }
-	Vector3(const float _x, const float _y, const float _z) { x=_x; y=_y; z=_z; }
-	Vector3(const double _x, const double _y, const double _z) { x = (float)_x; y = (float)_y; z = (float)_z; }
+	Vector3(float _x, float _y, float _z) { x=_x; y=_y; z=_z; }
+	Vector3(double _x, double _y, double _z) { x = (float)_x; y = (float)_y; z = (float)_z; }
 
 	inline float length() const { return XMVectorGetX(XMVector3Length(XMLoadFloat3(this))); }
 	inline float lengthSquared() const { return XMVectorGetX(XMVector3LengthSq(XMLoadFloat3(this))); }
@@ -199,6 +199,8 @@ public:
 	/// postprocessing effects.
 	///</summary>
 	static void CreateFullscreenQuad(Mesh& mesh);
+
+	static void CreatePlayerArrow(Mesh& mesh);
 
 private:
 	static void Subdivide(Mesh& meshData);

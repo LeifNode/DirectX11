@@ -13,6 +13,7 @@ class KinematicComponent : public ActorComponent
 {
 public:
 	KinematicComponent(BoidManager* boidGroup, float maxSpeed = 10.0f, float maxAcceleration = 20.0f);
+	KinematicComponent(BoidManager* boidGroup, const XMFLOAT3& initialVelocity,float maxSpeed = 10.0f, float maxAcceleration = 20.0f);
 	virtual ~KinematicComponent();
 
 	virtual void VInit(TiXmlElement*);
@@ -39,6 +40,7 @@ public:
 	void setMaxAcceleration(float acceleration) { mMaxAcceleration = acceleration; }
 
 	void setOrientationFromVelocity();
+	void wrapCoordinates();
 
 	BoidManager* getBoidManager() const { return mpBoidManager; }
 
