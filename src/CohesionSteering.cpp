@@ -11,7 +11,7 @@ void CohesionSteering::getSteering(SteeringOut& out)
 	if (count == 0)
 		return;
 
-	XMVECTOR targetVelocity = XMVectorSubtract(neighborhoodCenter, XMLoadFloat3(&mpKinematic->getTransform().lock()->getPosition()));
+	XMVECTOR targetVelocity = XMVectorSubtract(neighborhoodCenter, XMLoadFloat3(&mpKinematic->getTransform()->getPosition()));
 
 	XMStoreFloat3(&out.Linear, targetVelocity);
 }

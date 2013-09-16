@@ -25,7 +25,7 @@ std::vector<KinematicComponent*> BoidManager::getNeighborhood(KinematicComponent
 		if (kinematic == (*it))
 			continue;
 
-		Vector3 direction = XMVectorSubtract(XMLoadFloat3(&kinematic->getTransform().lock()->getPosition()), XMLoadFloat3(&(*it)->getTransform().lock()->getPosition()));
+		Vector3 direction = XMVectorSubtract(XMLoadFloat3(&kinematic->getTransform()->getPosition()), XMLoadFloat3(&(*it)->getTransform()->getPosition()));
 		
 		if (direction.lengthSquared() > radius * radius)
 			continue;
@@ -48,14 +48,14 @@ XMVECTOR BoidManager::getNeighbourhoodCenter(KinematicComponent* kinematic, floa
 		if (kinematic == (*it))
 			continue;
 
-		Vector3 direction = XMVectorSubtract(XMLoadFloat3(&kinematic->getTransform().lock()->getPosition()), XMLoadFloat3(&(*it)->getTransform().lock()->getPosition()));
+		Vector3 direction = XMVectorSubtract(XMLoadFloat3(&kinematic->getTransform()->getPosition()), XMLoadFloat3(&(*it)->getTransform()->getPosition()));
 		
 		if (direction.lengthSquared() > radius * radius)
 			continue;
 		if (direction.dot((*it)->getVelocity()) < minDotProduct)
 			continue;
 
-		totalPosition = XMVectorAdd(totalPosition, XMLoadFloat3(&(*it)->getTransform().lock()->getPosition()));
+		totalPosition = XMVectorAdd(totalPosition, XMLoadFloat3(&(*it)->getTransform()->getPosition()));
 		count++;
 	}
 
@@ -81,7 +81,7 @@ XMVECTOR BoidManager::getNeighbourhoodVelocity(KinematicComponent* kinematic, fl
 		if (kinematic == (*it))
 			continue;
 
-		Vector3 direction = XMVectorSubtract(XMLoadFloat3(&kinematic->getTransform().lock()->getPosition()), XMLoadFloat3(&(*it)->getTransform().lock()->getPosition()));
+		Vector3 direction = XMVectorSubtract(XMLoadFloat3(&kinematic->getTransform()->getPosition()), XMLoadFloat3(&(*it)->getTransform()->getPosition()));
 		
 		if (direction.lengthSquared() > radius * radius)
 			continue;

@@ -11,7 +11,7 @@ void SeparationSteering::getSteering(SteeringOut& out)
 	if (count ==  0)
 		return;
 
-	XMVECTOR targetVelocity = XMVectorSubtract(XMLoadFloat3(&mpKinematic->getTransform().lock()->getPosition()), neighborhoodCenter);
+	XMVECTOR targetVelocity = XMVectorSubtract(XMLoadFloat3(&mpKinematic->getTransform()->getPosition()), neighborhoodCenter);
 
 	//if (XMVectorGetX(XMVector3LengthSq(targetVelocity)) > 0.0f)
 		//targetVelocity = XMVectorMultiply(XMVector3Normalize(targetVelocity), XMVectorDivide(XMVectorSet(5.0f, 5.0f, 5.0f, 5.0f), XMVector3LengthSq(targetVelocity)));

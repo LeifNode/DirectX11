@@ -33,7 +33,7 @@ KinematicComponent::~KinematicComponent()
 
 void KinematicComponent::VInit(TiXmlElement* descriptor)
 {
-	mpTransform = mpOwner->getComponent<TransformComponent>(TransformComponent::gName);
+	mpTransform = mpOwner->getComponent<TransformComponent>(TransformComponent::gName).lock().get();
 
 	assert(!mpTransform.expired());
 }
@@ -112,7 +112,7 @@ void KinematicComponent::setOrientationFromVelocity()
 {
 	XMVECTOR rotationVec = XMVector3Normalize(XMLoadFloat3(&mVelocity));
 
-	mpTransform.lock()->setRotation(XMVectorGetX(rotationVec), XMVectorGetY(rotationVec), XMVectorGetZ(rotationVec));
+	mpTransform->setRotation(XMVectorGetX(rotationVec), XMVectorGetY(rotationVec), XMVectorGetZ(rotationVec));
 }
 
 //The weighted kinematic functionality should be pushed into its own steering behavior
@@ -148,13 +148,13 @@ void KinematicComponent::VUpdate(float dt)
 
 	//Integration
 
-	XMVECTOR currentPos = XMLoadFloat3(&mpTransform.lock()->getPosition());
+	XMVECTOR currentPos = XMLoadFloat3(&mpTransform->getPosition());
 	XMVECTOR vel = XMLoadFloat3(&mVelocity);
 	currentPos = XMVectorMultiplyAdd(vel, XMVectorSet(dt, dt, dt, dt), currentPos);
 
 	float drag = powf(0.9, dt);
 
-	mpTransform.lock()->setPosition(XMVectorGetX(currentPos), XMVectorGetY(currentPos), XMVectorGetZ(currentPos));
+	mpTransform->setPosition(XMVectorGetX(currentPos), XMVectorGetY(currentPos), XMVectorGetZ(currentPos));
 
 	vel = XMVectorMultiply(vel, XMVectorSet(drag, drag, drag, drag)); //Adds drag to current velocity
 	vel = XMVectorMultiplyAdd(finalAcceleration, XMVectorSet(dt, dt, dt, dt), vel); //Adds acceleration to current velocity
@@ -171,7 +171,7 @@ void KinematicComponent::VUpdate(float dt)
 
 void KinematicComponent::wrapCoordinates()
 {
-	XMFLOAT3 position = mpTransform.lock()->getPosition();
+	XMFLOAT3 position = mpTransform->getPosition();
 
 	const float BOX_BOUNDS = 50.0f;
 
@@ -190,5 +190,5 @@ void KinematicComponent::wrapCoordinates()
 	else if (position.z < -BOX_BOUNDS)
 		position.z = BOX_BOUNDS;
 
-	mpTransform.lock()->setPosition(position);
+	mpTransform->setPosition(position);
 }

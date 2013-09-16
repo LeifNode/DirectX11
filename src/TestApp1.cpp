@@ -172,7 +172,7 @@ void TestApp1::createActors()
 	Mesh boxMesh;
 	GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f, boxMesh);
 
-	for (unsigned i = 0; i < 350; i++)
+	for (unsigned i = 0; i < 630; i++)
 	{
 		ActorPtr newBoid = ActorPtr(new Actor(currentId++));
 

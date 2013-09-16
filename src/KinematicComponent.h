@@ -31,7 +31,7 @@ public:
 	bool setSteeringWeight(Steering*, float);
 
 	XMFLOAT3 getVelocity() const { return mVelocity; }
-	std::weak_ptr<TransformComponent> getTransform() const { return mpTransform; }
+	TransformComponent* getTransform() const { return mpTransform; }
 
 	float getMaxSpeed() const { return mMaxSpeed; }
 	void setMaxSpeed(float speed) { mMaxSpeed = speed; }
@@ -58,7 +58,7 @@ private:
 	float mMaxSpeed;
 	float mMaxAcceleration;
 
-	std::weak_ptr<TransformComponent> mpTransform;
+	TransformComponent* mpTransform;
 
 	std::vector<WeightedSteering> mSteeringBehaviors;
 	BoidManager* mpBoidManager;
