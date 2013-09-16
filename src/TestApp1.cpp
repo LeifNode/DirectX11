@@ -177,7 +177,7 @@ void TestApp1::createActors()
 		ActorPtr newBoid = ActorPtr(new Actor(currentId++));
 
 		XMFLOAT3 randRotation;
-		XMStoreFloat3(&randRotation, MathHelper::RandUnitVec3());
+		XMStoreFloat3(&randRotation, XMVectorMultiply(MathHelper::RandUnitVec3(), XMVectorSet(10.0f, 10.0f, 10.0f, 10.0f)));
 
 		const float MAX_VARIATION = 50.0f;
 
@@ -187,9 +187,9 @@ void TestApp1::createActors()
 																   Vector3(), 
 																   Vector3(0.5f));
 		MeshRenderComponent* BoidMesh = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
-		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, Vector3(randRotation));
-		boidKinematic->addSteering(new SeparationSteering(6.0f), 5.0f);
-		boidKinematic->addSteering(new CohesionSteering(12.0f, 0.0f), 2.0f);
+		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, Vector3(randRotation), 10.0f, 15.0f);
+		boidKinematic->addSteering(new SeparationSteering(3.0f), 8.0f);
+		boidKinematic->addSteering(new CohesionSteering(12.0f, 0.0f), 1.0f);
 		boidKinematic->addSteering(new AlignSteering(18.0f, 0.0f), 3.0f);
 
 		newBoid->addComponent(ActorComponentPtr(boidTransform));

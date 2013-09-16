@@ -27,7 +27,6 @@ MeshRenderComponent::MeshRenderComponent(const Mesh& mesh, ID3D11VertexShader* p
 	initData.pSysMem = &mesh.Vertices[0];
 	HR(renderer->device()->CreateBuffer(&bd, &initData, &mMeshVB));
 
-
 	D3D11_BUFFER_DESC ibd;
 	ibd.Usage = D3D11_USAGE_IMMUTABLE;
 	ibd.ByteWidth = sizeof(UINT) * (UINT)mesh.Indices.size();
@@ -59,7 +58,7 @@ MeshRenderComponent::~MeshRenderComponent()
 void MeshRenderComponent::VRender()
 {
 	ID3D11DeviceContext* context = Scene::getScene()->getRenderer()->context();
-
+	
 	context->IASetInputLayout(Scene::getScene()->getRenderer()->getInputLayout("Vertex"));
 	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 

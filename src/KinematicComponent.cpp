@@ -129,6 +129,7 @@ void KinematicComponent::VUpdate(float dt)
 
 		XMVECTOR steeringResult = XMLoadFloat3(&output.Linear);
 
+		//Cap acceleration
 		if (XMVectorGetX(XMVector3LengthSq(steeringResult)) > mMaxAcceleration)
 			steeringResult = XMVectorMultiply(XMVector3Normalize(steeringResult), XMVectorSet(mMaxAcceleration, mMaxAcceleration, mMaxAcceleration, mMaxAcceleration));
 
