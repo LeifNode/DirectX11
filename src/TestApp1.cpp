@@ -14,6 +14,7 @@
 #include "SeparationSteering.h"
 #include "AlignSteering.h"
 #include "KinematicComponent.h"
+#include "BlendedSteering.h"
 #include "Events.h"
 #include <iostream>
 #include <DirectXMath.h>
@@ -188,9 +189,12 @@ void TestApp1::createActors()
 																   Vector3(0.5f));
 		MeshRenderComponent* BoidMesh = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
 		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, Vector3(randRotation), 10.0f, 15.0f);
-		boidKinematic->addSteering(new SeparationSteering(3.0f), 8.0f);
-		boidKinematic->addSteering(new CohesionSteering(12.0f, 0.0f), 1.0f);
-		boidKinematic->addSteering(new AlignSteering(18.0f, 0.0f), 3.0f);
+		BlendedSteering* blendedSteering = new BlendedSteering();
+		boidKinematic->addSteering(blendedSteering);
+
+		blendedSteering->addSteering(new SeparationSteering(3.0f), 15.0f);
+		blendedSteering->addSteering(new CohesionSteering(14.0f, -0.7f), 2.0f);
+		blendedSteering->addSteering(new AlignSteering(18.0f), 6.0f);
 
 		newBoid->addComponent(ActorComponentPtr(boidTransform));
 		newBoid->addComponent(ActorComponentPtr(BoidMesh));

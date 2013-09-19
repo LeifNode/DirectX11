@@ -40,7 +40,7 @@ public:
 	inline float length() const { return XMVectorGetX(XMVector3Length(XMLoadFloat3(this))); }
 	inline float lengthSquared() const { return XMVectorGetX(XMVector3LengthSq(XMLoadFloat3(this))); }
 	inline void normalize() { XMStoreFloat3(this, XMVector3Normalize(XMLoadFloat3(this))); }
-	inline float dot(const XMFLOAT3 &b) const {	return XMVectorGetX(XMVector3Dot(XMLoadFloat3(this), XMLoadFloat3(this))); }
+	inline float dot(const XMFLOAT3 &b) const {	return XMVectorGetX(XMVector3Dot(XMLoadFloat3(this), XMLoadFloat3(&b))); }
 	inline Vector3 cross(const XMFLOAT3&b) const;
 
 	inline Vector3 operator+(const XMFLOAT3& b) { return Vector3(x + b.x, y + b.y, z + b.z); }

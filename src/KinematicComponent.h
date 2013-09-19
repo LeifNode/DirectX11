@@ -22,7 +22,7 @@ public:
 
 	static const char* gName;
 
-	bool addSteering(Steering*, float weight = 1.0f);
+	bool addSteering(Steering*);
 	bool removeSteering(Steering*);
 
 	void clear();
@@ -45,13 +45,6 @@ public:
 	BoidManager* getBoidManager() const { return mpBoidManager; }
 
 	virtual void VUpdate(float dt);
-	
-private:
-	struct WeightedSteering
-	{
-		Steering* Steering;
-		float Weight;
-	};
 
 private:
 	XMFLOAT3 mVelocity;
@@ -60,6 +53,6 @@ private:
 
 	TransformComponent* mpTransform;
 
-	std::vector<WeightedSteering> mSteeringBehaviors;
+	std::vector<Steering*> mSteeringBehaviors;
 	BoidManager* mpBoidManager;
 };
