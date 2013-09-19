@@ -164,6 +164,9 @@
     <ClInclude Include="src\SeparationSteering.h">
       <Filter>Source Files\Actors\Steering</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlendedSteering.h">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\TinyXML\tinystr.cpp">
@@ -257,6 +260,9 @@
       <Filter>Source Files\Actors\Steering</Filter>
     </ClCompile>
     <ClCompile Include="src\SeparationSteering.cpp">
+      <Filter>Source Files\Actors\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlendedSteering.cpp">
       <Filter>Source Files\Actors\Steering</Filter>
     </ClCompile>
   </ItemGroup>

@@ -141,9 +141,11 @@ void KinematicComponent::VUpdate(float dt)
 
 	if (totalWeight > 0.0f)
 	{
-		totalWeight = 1.0f / totalWeight;
+		totalWeight = totalWeight / mSteeringBehaviors.size();
 		finalAcceleration = XMVectorMultiply(finalAcceleration, XMVectorSet(totalWeight, totalWeight, totalWeight, totalWeight));
-		finalAcceleration = XMVectorMultiply(XMVector3Normalize(finalAcceleration), XMVectorSet(mMaxAcceleration, mMaxAcceleration, mMaxAcceleration, mMaxAcceleration));
+
+		if (XMVectorGetX(XMVector3LengthSq(finalAcceleration)) > mMaxAcceleration)
+			finalAcceleration = XMVectorMultiply(XMVector3Normalize(finalAcceleration), XMVectorSet(mMaxAcceleration, mMaxAcceleration, mMaxAcceleration, mMaxAcceleration));
 	}
 
 	//Integration
