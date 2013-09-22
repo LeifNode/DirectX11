@@ -153,6 +153,7 @@
     <ClInclude Include="src\ActorComponent.h" />
     <ClInclude Include="src\AlignSteering.h" />
     <ClInclude Include="src\BlendedSteering.h" />
+    <ClInclude Include="src\BoidHandler.h" />
     <ClInclude Include="src\BoidManager.h" />
     <ClInclude Include="src\BoidSteering.h" />
     <ClInclude Include="src\BoxRenderComponent.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="src\Actor.cpp" />
     <ClCompile Include="src\AlignSteering.cpp" />
     <ClCompile Include="src\BlendedSteering.cpp" />
+    <ClCompile Include="src\BoidHandler.cpp" />
     <ClCompile Include="src\BoidManager.cpp" />
     <ClCompile Include="src\BoxRenderComponent.cpp" />
     <ClCompile Include="src\CohesionSteering.cpp" />

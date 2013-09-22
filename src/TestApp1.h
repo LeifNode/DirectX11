@@ -2,7 +2,7 @@
 
 #include "d3dApp.h"
 
-class BoidManager;
+class BoidHandler;
 
 class TestApp1 : public D3DApp
 {
@@ -28,7 +28,6 @@ public:
 	void onMouseMove(WPARAM btnState, int x, int y);
 
 private:
-	void createActors();
 	void buildFX();
 
 private:
@@ -41,7 +40,7 @@ private:
 	ID3D11VertexShader* mpVertexShader;
 	ID3D11PixelShader* mpPixelShader;
 
-	BoidManager* mpBoidManager;
+	BoidHandler* mpBoidHandler;
 
 	float mTheta, mPhi, mRadius;
 

@@ -45,6 +45,9 @@
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{70b8d809-6f38-4203-a374-452aa2b6e5e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Debug Utilities">
+      <UniqueIdentifier>{a2f34185-69ac-41ad-8572-c03fb14be5dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\TinyXML\tinystr.h">
@@ -107,9 +110,6 @@
     <ClInclude Include="src\GameTimer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\MathHelper.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\TestApp1.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -167,6 +167,12 @@
     <ClInclude Include="src\BlendedSteering.h">
       <Filter>Source Files\Actors\Steering</Filter>
     </ClInclude>
+    <ClInclude Include="src\BoidHandler.h">
+      <Filter>Source Files\Debug Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MathHelper.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\TinyXML\tinystr.cpp">
@@ -212,9 +218,6 @@
       <Filter>Source Files\Graphics3D</Filter>
     </ClCompile>
     <ClCompile Include="src\GameTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MathHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\TestApp1.cpp">
@@ -264,6 +267,12 @@
     </ClCompile>
     <ClCompile Include="src\BlendedSteering.cpp">
       <Filter>Source Files\Actors\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoidHandler.cpp">
+      <Filter>Source Files\Debug Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MathHelper.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

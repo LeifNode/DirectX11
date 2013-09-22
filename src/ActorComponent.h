@@ -12,6 +12,8 @@ public:
 	ActorComponent() : mpOwner(NULL) { }
 	virtual ~ActorComponent() { mpOwner = NULL; }
 
+	Actor* getOwner() const { return mpOwner; }
+
 	virtual void VInit(TiXmlElement*) { }
 
 	virtual void VUpdate(float dt) { }

@@ -29,7 +29,8 @@ D3DApp::D3DApp(HINSTANCE hInstance)
 	mAppPaused(false),
 	mMinimized(false),
 	mMaximized(false),
-	mResizing(false)
+	mResizing(false),
+	mRunning(true)
 {
 	gd3dApp = this;
 	gpApplication = this;
@@ -56,7 +57,7 @@ int D3DApp::Run()
 
 	mTimer.Reset();
 
-	while (msg.message != WM_QUIT)
+	while (msg.message != WM_QUIT && mRunning)
 	{
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{

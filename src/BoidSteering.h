@@ -13,6 +13,8 @@ public:
 
 	float getRadius() const { return mRadius; }
 	float getMinDot() const { return mMinDot; }
+	void setRadius(float radius) { mRadius = radius; }
+	void setMinDot(float minDot) { mMinDot = minDot; }
 
 protected:
 	float mRadius, mMinDot;

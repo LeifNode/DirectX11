@@ -58,14 +58,22 @@ bool Scene::removeChild(const ActorId& id)
 	if (id == INVALID_ACTOR_ID)
 		return false;
 
-	ActorPtr actor = getActorNode(id).lock();
+	WeakActorPtr wkActorPtr = getActorNode(id);
+
+	//Make sure that the node was found
+	if (wkActorPtr.expired())
+		return false;
 	
+	ActorPtr actor = wkActorPtr.lock();
+
 	if (!actor->getParent().expired())
 	{
-		actor.get()->getParent().lock().get()->removeChild(id);
+		actor->getParent().lock()->removeChild(id);
 	}
-
-	mActorTable.erase(id);
+	else
+	{
+		return mpRoot->removeChild(id);
+	}
 
 	return true;
 }

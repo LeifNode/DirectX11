@@ -1,5 +1,9 @@
 #pragma once
 
+/*
+ *	Will probably become deprecated in favor of an actor component that acts as a camera.
+ */
+
 #include <DirectXMath.h>
 
 using DirectX::XMMATRIX;

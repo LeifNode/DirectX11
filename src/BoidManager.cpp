@@ -1,6 +1,7 @@
 #include "BoidManager.h"
 #include "KinematicComponent.h"
 #include "Geometry.h"
+#include "Scene.h"
 
 BoidManager::BoidManager()
 {

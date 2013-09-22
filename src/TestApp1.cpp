@@ -9,13 +9,13 @@
 #include "TransformComponent.h"
 #include "RotationAnimatorComponent.h"
 #include "MeshRenderComponent.h"
-#include "BoidManager.h"
 #include "CohesionSteering.h"
 #include "SeparationSteering.h"
 #include "AlignSteering.h"
 #include "KinematicComponent.h"
 #include "BlendedSteering.h"
 #include "Events.h"
+#include "BoidHandler.h"
 #include <iostream>
 #include <DirectXMath.h>
 #include "..\3rdParty\FastDelegate\FastDelegate.h"
@@ -79,10 +79,15 @@ TestApp1::TestApp1(HINSTANCE hInstance)
 
 	mLastMousePos.x = 0;
 	mLastMousePos.y = 0;
+
+	mpBoidHandler = new BoidHandler();
 }
 
 TestApp1::~TestApp1()
 {
+	delete mpBoidHandler;
+	mpBoidHandler = nullptr;
+
 	delete mpScene;
 	mpScene = nullptr;
 
@@ -102,9 +107,13 @@ bool TestApp1::Initialize()
 	mpScene = new Scene(mpRenderer);
 
 	buildFX();
-	createActors();
 
 	hookInputEvents();
+
+	Mesh boidMesh;
+	GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f, boidMesh);
+
+	mpBoidHandler->initialize(boidMesh, mpVertexShader, mpPixelShader);
 
 	return true;
 }
@@ -123,8 +132,12 @@ void TestApp1::onKeyDown(IEventDataPtr eventData)
 {
 	shared_ptr<EventData_KeyboardDown> dataPtr = static_pointer_cast<EventData_KeyboardDown>(eventData);
 
-	if (dataPtr->getKey() == KEY_G)
-		std::cout << (char)dataPtr->getKey() << std::endl;
+	switch (dataPtr->getKey())
+	{
+	case KEY_ESC:
+		mRunning = false;
+		break;
+	}
 }
 
 void TestApp1::buildFX()
@@ -163,47 +176,6 @@ void TestApp1::buildFX()
 
 	HR(mpRenderer->device()->CreatePixelShader(PSBlob->GetBufferPointer(), PSBlob->GetBufferSize(), NULL, &mpPixelShader));
 	PSBlob->Release();
-}
-
-void TestApp1::createActors()
-{
-	mpBoidManager = new BoidManager();
-	unsigned currentId = 1;
-
-	Mesh boxMesh;
-	GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f, boxMesh);
-
-	for (unsigned i = 0; i < 630; i++)
-	{
-		ActorPtr newBoid = ActorPtr(new Actor(currentId++));
-
-		XMFLOAT3 randRotation;
-		XMStoreFloat3(&randRotation, XMVectorMultiply(MathHelper::RandUnitVec3(), XMVectorSet(10.0f, 10.0f, 10.0f, 10.0f)));
-
-		const float MAX_VARIATION = 50.0f;
-
-		TransformComponent* boidTransform = new TransformComponent(Vector3((rand()/(float)RAND_MAX)*MAX_VARIATION - (rand()/(float)RAND_MAX)*MAX_VARIATION, 
-																		   (rand()/(float)RAND_MAX)*MAX_VARIATION - (rand()/(float)RAND_MAX)*MAX_VARIATION, 
-																		   (rand()/(float)RAND_MAX)*MAX_VARIATION - (rand()/(float)RAND_MAX)*MAX_VARIATION),
-																   Vector3(), 
-																   Vector3(0.5f));
-		MeshRenderComponent* BoidMesh = new MeshRenderComponent(boxMesh, mpVertexShader, mpPixelShader);
-		KinematicComponent* boidKinematic = new KinematicComponent(mpBoidManager, Vector3(randRotation), 10.0f, 15.0f);
-		BlendedSteering* blendedSteering = new BlendedSteering();
-		boidKinematic->addSteering(blendedSteering);
-
-		blendedSteering->addSteering(new SeparationSteering(3.0f), 15.0f);
-		blendedSteering->addSteering(new CohesionSteering(14.0f, -0.7f), 2.0f);
-		blendedSteering->addSteering(new AlignSteering(18.0f), 6.0f);
-
-		newBoid->addComponent(ActorComponentPtr(boidTransform));
-		newBoid->addComponent(ActorComponentPtr(BoidMesh));
-		newBoid->addComponent(ActorComponentPtr(boidKinematic));
-
-		newBoid->initialize(NULL);
-
-		mpScene->addChild(newBoid);
-	}
 }
 
 void TestApp1::onResize()

@@ -52,6 +52,7 @@ protected:
 	bool      mMinimized;
 	bool      mMaximized;
 	bool      mResizing;
+	bool	  mRunning;
 
 	D3DRenderer* mpRenderer;
 	InputSystem* mpInputSystem;
